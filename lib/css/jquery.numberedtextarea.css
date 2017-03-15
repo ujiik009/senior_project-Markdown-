@@ -19,9 +19,11 @@ div.numberedtextarea-line-numbers {
   background-color: #F5F7FA;
   color: #00827c;
   overflow: hidden;
+
 }
 
 div.numberedtextarea-number {
   padding-right: 6px;
+  font-size: 16px;
   text-align: right;
 }

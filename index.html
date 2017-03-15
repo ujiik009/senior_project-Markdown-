@@ -1,18 +1,29 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title>Markdown Editor </title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css"/>
-	<link rel="stylesheet" type="text/css" href="lib/css/jquery.numberedtextarea.css">
-	<link rel="stylesheet" href="lib/css/agate.min.css">
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-	<style type="text/css">
-		body{
-			/*rgba(0, 0, 0, 0.8)*/
-			background-color: #362E04;
-		}
+    <title>MarkDown Editor</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="lib/css/bootstrap.min.css"/>
+    <!--external css-->
+    <link href="lib/css/font-awesome.css" rel="stylesheet" />
+
+    
+    <link rel="stylesheet" type="text/css" href="lib/css/jquery.numberedtextarea.css">
+	<link rel="stylesheet" href="lib/css/agate.min.css">
+    
+    <!-- Custom styles for this template -->
+    <link href="lib/css/style.css" rel="stylesheet">
+    <link href="lib/css/style-responsive.css" rel="stylesheet">
+
+   
+    <style type="text/css">
 		.col-md-6{
 			padding: 0px;
 			/*background-color: #c0c2e5;*/
@@ -21,19 +32,16 @@
 		.box{
 			padding: 5px;
 			height: auto;
-			
+			/*background-color:#70a9d1;*/
 
 		}
 		.io{ 
+			
 
-			/*padding: 20px;*/
 			width: 100%;
 			height: 41vw;
-			background-color: #FFFCEB;
+			background-color: #ffffff;
 			overflow: scroll;
-		}
-		.output{
-			padding: 20px;
 		}
 		hr { 
 		    display: block;
@@ -48,158 +56,259 @@
 			width: auto;
 			height: auto;
 			background-color: #333;
-			overflow-x:auto;
 
 		}
 		code{
-			height: inherit;
-			
+			height: inherit
 
 		}
+		.navbar-box{
+
+			background-color: #505d72;
+			padding: 2%;
+			/*height: 30px;*/
+			font-size: 18px;
+			width: initial;
+			color: #ffffff;
+		}
+		.item-right{
+			float: right;
+
+		}
+		li.dropdown{
+			list-style: none;
+		}
+		.item-editor{
+			width: 30px;
+		}
+		.dropdown-menu >li>a{
+			padding: 7%;
+		}
+		
 
 	</style>
-</head>
-<body>
-<!-- navbar start < -->
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#" >M<span class="glyphicon glyphicon-arrow-down"></span> </a>
-    </div>
+  </head>
 
-    <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Page 1-1</a></li>
-          <li><a href="#">Page 1-2</a></li>
-          <li><a href="#">Page 1-3</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Page 2</a></li>
-    </ul>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-    </ul>
-  </div>
-</nav>
-<!-- navbar stop > -->
+  <body>
 
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="index.html" class="logo"><b>Mark Down</b></a>
+            <!--logo end-->
+            <div class="nav notify-row" id="top_menu">
+                <!--  notification start -->
+                <ul class="nav top-menu"> 
+                <!-- navber start -->
+	                 <!-- icon Editor list -->
+				      <li><a href="#" class="item-editor"><i class="fa fa-bold" aria-hidden="true"></i></a></li>
+				      <li style="text-align: center;"><a href="#" class="item-editor"><i class="fa fa-italic" aria-hidden="true"></i></a></li>
+				      <li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+				      <!-- icon Editor list -->
+                <!-- navber stop -->
+                </ul>
+                <!--  notification end -->
+            </div>
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" id="singin" >Sing In</a></li>
+            	</ul>
+            </div>
+        </header>
+      <!--header end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+              
+              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">Marcel Newman</h5>
+              	  	
+                  <li class="mt">
+                      <a class="active" href="index.html">
+                          <i class="fa fa-dashboard"></i>
+                          <span>Dashboard</span>
+                      </a>
+                  </li>
 
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-desktop"></i>
+                          <span>UI Elements</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="general.html">General</a></li>
+                          <li><a  href="buttons.html">Buttons</a></li>
+                          <li><a  href="panels.html">Panels</a></li>
+                      </ul>
+                  </li>
 
-<div class="row">
-  <div class="col-md-6">
-  	<div class="box">
-  		<textarea class="input io"></textarea>
-  	</div>
-  </div>
-  <div class="col-md-6">
-  	<div class="box">
-  		<div class="output io"></div>
-  	</div>
-  </div>
-</div>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-cogs"></i>
+                          <span>Components</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="calendar.html">Calendar</a></li>
+                          <li><a  href="gallery.html">Gallery</a></li>
+                          <li><a  href="todo_list.html">Todo List</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-book"></i>
+                          <span>Extra Pages</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="blank.html">Blank Page</a></li>
+                          <li><a  href="login.html">Login</a></li>
+                          <li><a  href="lock_screen.html">Lock Screen</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-tasks"></i>
+                          <span>Forms</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="form_component.html">Form Components</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-th"></i>
+                          <span>Data Tables</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="basic_table.html">Basic Table</a></li>
+                          <li><a  href="responsive_table.html">Responsive Table</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class=" fa fa-bar-chart-o"></i>
+                          <span>Charts</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a  href="morris.html">Morris</a></li>
+                          <li><a  href="chartjs.html">Chartjs</a></li>
+                      </ul>
+                  </li>
 
-</body>
-<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
-<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
-<script type="text/javascript" src="lib/js/tab.js"></script>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+      
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+          	<!-- content -->
+             <div class="row">
+			  <div class="col-md-6">
 
-<script src="lib/js/highlight.min.js"></script>
-<script type="text/javascript">
-$( document ).ready(function() {
-	// || ice || ice || ice ||
-	// |:---:|:---:|:---:|
-	// | sds | sds | dsds |
-	// </table>
+			  	<div class="box">
+			  	<div class="navbar-box">
+			  		MARKDOWN
+			  		<div class="item-right">line</div>
+			  	</div><!-- navber -->
+			  		<textarea class="input io"></textarea>
+			  	</div>
+			  </div>
+			  <div class="col-md-6">
+			  	<div class="box">
+			  	<div class="navbar-box">
+			  		HTML
+			  		<div class="navbar-right">
+				  	   <li class="dropdown">
+				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;padding-right: 10px;">PREVIEW AS<span class="caret"></span></a>
+				          <ul class="dropdown-menu">
+				            <li><a href="#"><i class="fa fa-code" aria-hidden="true"></i> HTML</a></li>
+				            <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true" style="padding-right: 2px;"></i> PDF</a></li>
+				            		       
+				          </ul>
+				        </li>
+                  	</div>
 
-	// || ice || ice || ice ||
-	// |:---:|:---:|:---:|
-	// | sds | sds | dsds |
-	// </table>
+			  	</div><!-- navber -->
+			  		<div class="output io"></div>
+			  	</div>
+			  </div>
+			</div>
+			<!-- content -->
+          </section>
+      </section>
 
+       <!-- Modal -->
+		  <div class="modal fade" id="myModal" role="dialog">
+		    <div class="modal-dialog modal-sm">
+		    
+		      <!-- Modal content-->
+		      <div class="modal-content" id="modal-login">
+		       
+		      </div>
+		      
+		    </div>
+		  </div>
+		<!-- Modal -->
+  
 
-	 $(".input").numberedtextarea().enableSmartTab();
+      <!--main content end-->
+      <!--footer start-->
+      <footer class="site-footer">
+          <div class="text-center">
+              2014 - Alvarez.is
+              <a href="index.html#" class="go-top">
+                  <i class="fa fa-angle-up"></i>
+              </a>
+          </div>
+      </footer>
+      <!--footer end-->
+  </section>
 
-	hljs.initHighlightingOnLoad();
-	$(".input").keyup(function(){
-		
-		$(".output").html(regexMD_to_html($(".input").val())),highlight();
-	});
-	var html;
-	var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
-	function regexMD_to_html(text){
-		
-		var objpatt = {
-			 pattH1 		: /(#{1})(.+)?/gm,
-			 pattH2 		: /(#{2})(.+)?/gm,
-			 pattH3 		: /(#{3})(.+)?/gm,
-			 pattH4 		: /(#{4})(.+)?/gm,
-			 pattH5 		: /(#{5})(.+)?/gm,
-			 pattH6 		: /(#{6})(.+)?/gm,
-			 pattheadder1	: /([A-z0-9ก-๙]+)\n={2,}/gm,
-			 pattheadder2	: /([A-z0-9ก-๙]+)\n\-{2,}/gm,
-			 pattlink 		: /(\[(.*?)\]\()(.+?)(\))/gm,
-			 patthorizontal : /-{3,}/gm,
-			 pattnewline 	: /^\n/mg,
-			 pattStrong 	: /(\*\*|__)(.*?)\1/gm,
-			 pattitalics 	: /(\*\*\*|___|\/\/\/)(.*?)\1/gm,
-			 pattimgOption 	: /!\[(.*)\]\((.+)\)\((.+)\)\((.+)\)/gm,
-			 pattimg 		: /!\[(.*)\]\((.+)\)/gm,
-			 patttlist      : /\* (.*)/gm,
-			 pattcode_block : /```(\w+)*\n([\s\S]*?)\n{1,}```/g,
-			 pattTableth	: /[|][|](\s+[A-Za-z0-9 -_*#@$%:;?!.,\/\\]+\s+)[|]?[|]?(\s+[A-Za-z0-9 -_*#@$%:;?!.,\/\\]+\s+)[|]?[|]?(\s+[A-Za-z0-9 -_*#@$%:;?!.,\/\\]+\s+)[|]?[|]?\r?\n?\|?:-+:\|?:-+:\|?:-+:\|?/gm,
-			 pattTableC 	: /[|](\s+[A-Za-z0-9 -_*#@$%:;?!.,\/\\]+\s+)[|](\s+[A-Za-z0-9 -_*#@$%:;?!.,\/\\]+\s+)[|](\s+[A-Za-z0-9 -_*#@$%:;?!.,\/\\]+\s+)[|]?\r?\n?/gm
-			 
-			
-		}
-		// text = text.match(pattH1);
-		text = 
-		text.replace(objpatt.pattTableth,"<table border=1>\n<tr>\n\t<th>$1</th>\n\t<th>$2</th>\n\t<th>$3</th>\n</tr>")
-			.replace(objpatt.pattTableC,"\n<tr>\n\t<td>$1</td>\n\t<td>$2</td>\n\t<td>$3</td>\n</tr>")		
-			.replace(objpatt.pattH6,"<h6>\n\t$2\n</h6>\n")
-			.replace(objpatt.pattH5,"<h5>\n\t$2\n</h5>\n")
-			.replace(objpatt.pattH4,"<h4>\n\t$2\n</h4>\n")
-			.replace(objpatt.pattH3,"<h3>\n\t$2\n</h3>\n")
-			.replace(objpatt.pattH2,"<h2>\n\t$2\n</h2>\n")
-			.replace(objpatt.pattH1,"<h1>\n\t$2\n</h1>\n")
-			.replace(objpatt.pattheadder1,"<h1>$1</h1>")
-			.replace(objpatt.pattheadder2,"<h2>$1</h2>")
-			.replace(objpatt.patthorizontal,"<hr />")
-			.replace(objpatt.pattitalics,"<em>$2</em>")
-			.replace(objpatt.pattStrong,"<strong>$2</strong>")
-			.replace(objpatt.pattimgOption,'<img src="$2" alt="$1" style="width:$3px;height:$4px;"/>')
-			.replace(objpatt.pattimg,'<img src="$2" alt="$1" />')
-			.replace(objpatt.pattlink,"<a href='$3'>$2</a>")
-			.replace(objpatt.patttlist,"<ul><li>$1</li></ul>")
-			.replace(objpatt.pattcode_block,"<pre><code class ='$1'>$2</code></pre>")
-			.replace(objpatt.pattnewline,"</br>")
+    <!-- js placed at the end of the document so the pages load faster -->
 
-			
-			
-		html = text;	
-		//return text;
-		//console.log(template.replace("<??content??>",text));
-		//alert(template.replace("<??content??>",text));
-		return template.replace("<??content??>",text);
-	}
-	function highlight(){
-		$('pre code').each(function(i, block) {
-		    hljs.highlightBlock(block);
-		});
-	}
-
-	$("button").click(function(){
-		alert(html);
-	})
-
-});
-</script>
-
+  	<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
+	<script type="text/javascript" src="lib/js/tab.js"></script>
+    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="lib/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="lib/js/jquery.scrollTo.min.js"></script>
+    <script src="lib/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="lib/js/common-scripts.js"></script>
+     <script type="text/javascript">
+    	$(document).ready(function() {
+    		$(".input").numberedtextarea().enableSmartTab();
+    		$("#singin").click(function(event) {
+    			$("#modal-login").empty();
+    			$.get('ajax/login.html', function() {
+    				
+    			}).done(function(data){
+    				$("#modal-login").append(data);
+    				
+    			},function(){
+    				$("#myModal").modal('show');
+    			});
+    			
+    		});
+    		
+    	});
+    </script>
+  </body>
 </html>
-
-
-
-
