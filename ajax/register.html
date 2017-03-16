@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title></title>
+<link rel="stylesheet" type="text/css" href="../lib/css/bootstrap.min.css"/>
+<link href="../lib/css/font-awesome.css" rel="stylesheet" />
+<link href="../lib/css/style.css" rel="stylesheet">
+<link href="../lib/css/style-responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../lib/css/simply-toast.min.css"/>
+<style type="text/css">
+body{
+	background-color: hsla(86, 87%, 0%, 0.66);
+
+}
+form{
+	margin-top: 20%
+}
+input{
+	margin-bottom: 6px;
+}
+</style>
+</head>
+<body>
+	 <div  id="login-form" class="form-login" >
+	    <h2 class="form-login-heading">Create an account</h2>
+	    <div class="login-wrap">
+	    	<div class="row">
+	    		<div class="col-md-12">
+	    			<label >Email</label>
+		    			<input type="text" class="form-control" id="email" placeholder="email"  autofocus>	
+	    		</div>
+	    	</div>
+	        <div class="row">
+	    		<div class="col-md-12">
+	    			<label >Password</label>
+	    		 		<input type="password" class="form-control" id="password" placeholder="Password" >
+	    		</div>
+	    	</div>	
+	    	<div class="row">
+	    		<div class="col-md-12" >
+	    			<label >Verify password</label>
+	    		 <input type="password" class="form-control" id="Re_password" placeholder="Password" >
+	    		</div>
+	    	</div>	
+	        
+	       
+	        <div style="height: 20px;"></div>
+	        <button id="btn-singIn" class="btn btn-theme btn-block"  type="submit" ><i class="fa fa-angle-right"></i> CREATE</button>
+	      
+
+	    </div>
+	  </div>	  	
+</body>
+<script type="text/javascript" src="../lib/js/jquery-3.1.1.js"></script>
+ <script src="../lib/js/simply-toast.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		function validateForm(mail) {
+		    var x = mail;
+		    var atpos = x.indexOf("@");
+		    var dotpos = x.lastIndexOf(".");
+		    if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length) {
+		        
+		        return false;
+		    }else{
+		    	return true;
+		    }
+		}
+
+		$("#btn-singIn").click(function(event) {
+			$(".col-md-12").removeClass('has-error');
+			var email = $("#email").val().trim();
+			var pass = $("#password").val().trim();
+			var Re_pass = $("#Re_password").val().trim();
+			if(email != "" && pass != "" && Re_pass != ""){
+				if(validateForm(email)){
+					if(pass == Re_pass){
+						$.post('../Service/Create_user.php', {email: email,pass:pass}, function(){
+
+						}).done(function(data){
+							//alert(data);
+							var json_res = jQuery.parseJSON(data);
+							if(json_res.status){
+								$.simplyToast(json_res.message, 'success');
+								 setTimeout(function(){close(); }, 2000);
+							}else{
+								$.simplyToast(json_res.message, 'danger');
+							}
+							
+						});
+					}else{
+						
+						$.simplyToast('Please check password verification.', 'danger');
+						$("#Re_password").parent().parent().addClass('has-error');
+
+					}
+				
+				}else{
+						$.simplyToast('email not format', 'danger');
+						$("#email").parent().parent().addClass('has-error');
+				}
+				
+			}else{
+				alert("False");
+			}
+			
+		});
+	});
+</script>
+</html>

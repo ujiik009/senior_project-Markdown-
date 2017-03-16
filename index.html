@@ -33,6 +33,9 @@
 			padding: 5px;
 			height: auto;
 			/*background-color:#70a9d1;*/
+			-webkit-box-shadow: 4px -5px 5px -4px rgba(0,0,0,0.75);
+			-moz-box-shadow: 4px -5px 5px -4px rgba(0,0,0,0.75);
+			box-shadow: 4px -5px 5px -4px rgba(0,0,0,0.75);
 
 		}
 		.io{ 
@@ -67,6 +70,7 @@
 			background-color: #505d72;
 			padding: 2%;
 			/*height: 30px;*/
+			border-radius: 5px 5px 0 0;
 			font-size: 18px;
 			width: initial;
 			color: #ffffff;
@@ -118,7 +122,7 @@
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout" id="singin" >Sing In</a></li>
+                    <li style="cursor: pointer;"><a class="logout" id="singin" >SING IN</a></li>
             	</ul>
             </div>
         </header>
@@ -133,43 +137,54 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="assets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Marcel Newman</h5>
+              	  <p class="centered"><a ><img src="Resource\img\logo.png" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">MarkDown Editor</h5>
               	  	
                   <li class="mt">
                       <a class="active" href="index.html">
-                          <i class="fa fa-dashboard"></i>
-                          <span>Dashboard</span>
+                          <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                          <span>IMPORT FILE </span>
                       </a>
                   </li>
 
+                 <!--  show Document start -->
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class="fa fa-desktop"></i>
-                          <span>UI Elements</span>
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          <span>DOCUMENTS</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="general.html">General</a></li>
-                          <li><a  href="buttons.html">Buttons</a></li>
-                          <li><a  href="panels.html">Panels</a></li>
+                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> HTML FILE</a></li>
+                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> PDF FILE</a></li>
+                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> MARKDOWN FILE</a></li>
                       </ul>
                   </li>
+                  <!--  show Document start -->
 
                   <li class="sub-menu">
                       <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Components</span>
+                          <i class="fa fa-download" aria-hidden="true"></i>
+                          <span>EXPORT FILE</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="calendar.html">Calendar</a></li>
-                          <li><a  href="gallery.html">Gallery</a></li>
-                          <li><a  href="todo_list.html">Todo List</a></li>
+                          <li><a  href="#"><i class="fa fa-file-code-o" aria-hidden="true"></i> HTML FILE</a></li>
+                          <li><a  href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF FILE</a></li>
+                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> MARKDOWN FILE</a></li>
                       </ul>
                   </li>
+                  <li class="sub-menu">
+                      <a href="javascript:;" >
+                          <i class="fa fa-floppy-o" aria-hidden="true"></i>
+                          <span>SAVE</span>
+                      </a>
+                      
+                  </li>
+
+                
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
-                          <span>Extra Pages</span>
+                          <span>TUTORIAL</span>
                       </a>
                       <ul class="sub">
                           <li><a  href="blank.html">Blank Page</a></li>
@@ -177,35 +192,7 @@
                           <li><a  href="lock_screen.html">Lock Screen</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="form_component.html">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="basic_table.html">Basic Table</a></li>
-                          <li><a  href="responsive_table.html">Responsive Table</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="morris.html">Morris</a></li>
-                          <li><a  href="chartjs.html">Chartjs</a></li>
-                      </ul>
-                  </li>
+              
 
               </ul>
               <!-- sidebar menu end-->
@@ -226,7 +213,7 @@
 			  	<div class="box">
 			  	<div class="navbar-box">
 			  		MARKDOWN
-			  		<div class="item-right">line</div>
+			  		<div class="item-right">LINE : <div style="display: inline;" id="line">0</div></div>
 			  	</div><!-- navber -->
 			  		<textarea class="input io"></textarea>
 			  	</div>
@@ -235,7 +222,7 @@
 			  	<div class="box">
 			  	<div class="navbar-box">
 			  		HTML
-			  		<div class="navbar-right">
+			  		<div class="item-right navbar-right">
 				  	   <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;padding-right: 10px;">PREVIEW AS<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
@@ -295,6 +282,7 @@
      <script type="text/javascript">
     	$(document).ready(function() {
     		$(".input").numberedtextarea().enableSmartTab();
+    		
     		$("#singin").click(function(event) {
     			$("#modal-login").empty();
     			$.get('ajax/login.html', function() {
@@ -304,6 +292,13 @@
     				
     			},function(){
     				$("#myModal").modal('show');
+    				$("#btn-singIn").click(function(event) {
+    					$.post('Service/login.php', {user: $("#User").val(),password:$("#password").val()}, function() {
+    						
+    					}).done(function(data){
+    						alert(data);
+    					});
+    				});
     			});
     			
     		});
