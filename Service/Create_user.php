@@ -1,8 +1,8 @@
 <?php 
 	require '../config_system/config_DB.php';
 	require '../config_system/config_path.php';
-	$_POST['email'] = "testEmail";
-	$_POST['pass'] = "textPass";
+	// $_POST['email'] = "testEmail";
+	// $_POST['pass'] = "textPass";
 
 	$return = array();
 	$user_id = date("dmYHis");
@@ -20,6 +20,7 @@
 				if(create_user($obj_con,$user_id,$_POST['email'],$_POST['pass'],$create_date)){
 					mkdir($path['temp_user'].$user_id,0775);
 					mkdir($path['temp_user'].$user_id."/file_temp",0775);
+					file_put_contents($path['temp_user'].$user_id."/config.json", "");
 					//echo $path['temp_user'].$user_id;
 					$return['status'] = true;
 					$return['message'] = "Create User successful";
