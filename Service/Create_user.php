@@ -1,6 +1,7 @@
 <?php 
 	require '../config_system/config_DB.php';
 	require '../config_system/config_path.php';
+	require $path['public_func'];
 	// $_POST['email'] = "testEmail";
 	// $_POST['pass'] = "textPass";
 
@@ -40,6 +41,8 @@
 
 
 	function create_user($obj_con,$uid,$email,$pass,$create_date){
+		$email = encrypt_decrypt('encrypt',$email);
+		$pass  = encrypt_decrypt('encrypt',$pass);
 		$sql = "INSERT INTO `user_account` (`user_id`, `user_pass`, `user_email`, `use_create_date`)";
 		$sql.=" VALUES ('$uid', '{$pass}', '{$email}', '{$create_date}');";
 

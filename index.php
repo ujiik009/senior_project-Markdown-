@@ -1,6 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <?php 
+      session_start();
+       $UID = "";
+      
+      require 'config_system/config_DB.php';
+      require 'lib/php/public_function.php';
+      $status_cookie = check_cookie($obj_con,"UID");
+      function check_login($status_cookie){
+        if($status_cookie){
+         $GLOBALS['UID'] = encrypt_decrypt('decrypt',$_COOKIE['UID']);
+           
+          return true;
+        }elseif(isset($_SESSION['data_user'])){
+          $GLOBALS['UID'] = $_SESSION['data_user']['user_id'];
+           
+          return true;
+        }else{
+          return false;
+        }
+
+      }
+        
+      $status_login = check_login($status_cookie);
+      //var_dump($UID);
+    ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -16,8 +41,8 @@
 
     
     <link rel="stylesheet" type="text/css" href="lib/css/jquery.numberedtextarea.css">
-	<link rel="stylesheet" href="lib/css/agate.min.css">
-    
+	  <link rel="stylesheet" href="lib/css/agate.min.css">
+    <link rel="stylesheet" type="text/css" href="lib/css/simply-toast.min.css"/>
     <!-- Custom styles for this template -->
     <link href="lib/css/style.css" rel="stylesheet">
     <link href="lib/css/style-responsive.css" rel="stylesheet">
@@ -88,6 +113,22 @@
 		.dropdown-menu >li>a{
 			padding: 7%;
 		}
+    .mylist{
+     
+      font-size: 11px;
+      border-radius: 4px;
+      -webkit-border-radius: 4px;
+      border: 1px solid #64c3c2 !important;
+      
+      background: #424a5d;
+      margin-top: 10px;
+      height: 40px;
+      padding-top: 10px;
+      min-width: 120px;
+      max-width: auto;
+      text-align: center;
+
+    }
 		
 
 	</style>
@@ -122,8 +163,11 @@
             </div>
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
+                    <li id="docName"><a class="mylist"  style="color: #ffffff;padding-top: 7px;cursor: pointer;">Untitled Document.md</a></li>
+                    <li id="changeDocName" style="display: none;"><a class="mylist" style="color: #ffffff;padding-top: 4px;cursor: pointer;"><input type="text" style="color: #000000"></input></a></li>
                     <li style="cursor: pointer;"><a class="logout" id="singin" >SING IN</a></li>
-            	</ul>
+            	       
+              </ul>
             </div>
         </header>
       <!--header end-->
@@ -141,12 +185,13 @@
               	  <h5 class="centered">MarkDown Editor</h5>
               	  	
                   <li class="mt">
-                      <a class="active" href="index.html">
+                      <a  href="index.html">
                           <i class="fa fa-cloud-upload" aria-hidden="true"></i>
                           <span>IMPORT FILE </span>
                       </a>
                   </li>
 
+                  <?php if($status_login) {?>
                  <!--  show Document start -->
                   <li class="sub-menu">
                       <a href="javascript:;" >
@@ -160,7 +205,7 @@
                       </ul>
                   </li>
                   <!--  show Document start -->
-
+                  <?php } ?>
                   <li class="sub-menu">
                       <a href="javascript:;" >
                           <i class="fa fa-download" aria-hidden="true"></i>
@@ -172,13 +217,15 @@
                           <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> MARKDOWN FILE</a></li>
                       </ul>
                   </li>
-                  <li class="sub-menu">
+                  <?php if($status_login) {?>
+                  <li class="sub-menu" id="my_save">
                       <a href="javascript:;" >
                           <i class="fa fa-floppy-o" aria-hidden="true"></i>
                           <span>SAVE</span>
                       </a>
                       
                   </li>
+                  <?php }?>
 
                 
                   <li class="sub-menu">
@@ -215,7 +262,7 @@
 			  		MARKDOWN
 			  		<div class="item-right">LINE : <div style="display: inline;" id="line">0</div></div>
 			  	</div><!-- navber -->
-			  		<textarea class="input io"></textarea>
+			  		<textarea class="input io" id="input_md"></textarea>
 			  	</div>
 			  </div>
 			  <div class="col-md-6">
@@ -273,16 +320,29 @@
 
   	<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
     <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
+    <script src="lib/js/simply-toast.min.js"></script>
 	<script type="text/javascript" src="lib/js/tab.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="lib/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="lib/js/jquery.scrollTo.min.js"></script>
     <script src="lib/js/jquery.nicescroll.js" type="text/javascript"></script>
 	<script src="lib/js/common-scripts.js"></script>
+
      <script type="text/javascript">
     	$(document).ready(function() {
+        
+         var document_name = "document";
+         var UID = <?php echo $UID;?>
+         
     		$(".input").numberedtextarea().enableSmartTab();
-    		
+    		function addTypeFile(fileName){
+            return fileName+".md";
+        }
+        function setup(){
+            $("#docName").children().html(addTypeFile(document_name));
+        }
+
+        //event btn singin start
     		$("#singin").click(function(event) {
     			$("#modal-login").empty();
     			$.get('ajax/login.html', function() {
@@ -300,9 +360,52 @@
     					});
     				});
     			});
-    			
     		});
+        //event btn singin stop
+
+        //event change Doc Name focus
+        $("#docName").click(function(event) {
+          $(this).hide();
+          $("#changeDocName").show();
+          $("#changeDocName").children().children().val(document_name);
+        });
+        //event change Doc Name focus
+
+       //event change Doc Name onblur save new doc Name
+       $("#changeDocName").children().children().blur(function(event) {
+         document_name = $(this).val();
+         $("#changeDocName").hide();
+          $("#docName").show();
+         $("#docName").children().html(addTypeFile(document_name));
+       });
+       //event change Doc Name onblur
+
+       //event save file to server
+       $("#my_save").click(function(event) {
+          var content = $("#input_md").val();
+          $.post('Service/service_save_file.php', 
+            {
+              content: content,
+              UID : UID,
+              file_name:document_name
+            }, 
+            function() {
+            /*optional stuff to do after success */
+            }).done(function(data){
+                var json_res = jQuery.parseJSON(data);
+                if(json_res.status == true){
+                    $.simplyToast(json_res.message, 'success');
+                }else{
+                    $.simplyToast(json_res.message, 'danger');
+                }
+            });
+       });
+       //event save file to server
     		
+
+        //init function
+        setup();
+        //init function
     	});
     </script>
   </body>
