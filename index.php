@@ -43,6 +43,8 @@
     <link rel="stylesheet" type="text/css" href="lib/css/jquery.numberedtextarea.css">
 	  <link rel="stylesheet" href="lib/css/agate.min.css">
     <link rel="stylesheet" type="text/css" href="lib/css/simply-toast.min.css"/>
+   
+
     <!-- Custom styles for this template -->
     <link href="lib/css/style.css" rel="stylesheet">
     <link href="lib/css/style-responsive.css" rel="stylesheet">
@@ -184,11 +186,13 @@
               	  <p class="centered"><a ><img src="Resource\img\logo.png" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">MarkDown Editor</h5>
               	  	
-                  <li class="mt">
-                      <a  href="index.html">
+                 
+                  <li class="sub-menu" id="import_file">
+                      <a href="javascript:;" >
                           <i class="fa fa-cloud-upload" aria-hidden="true"></i>
-                          <span>IMPORT FILE </span>
+                          <span>IMPORT FILE</span>
                       </a>
+                      
                   </li>
 
                   <?php if($status_login) {?>
@@ -198,10 +202,8 @@
                           <i class="fa fa-file-text-o" aria-hidden="true"></i>
                           <span>DOCUMENTS</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> HTML FILE</a></li>
-                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> PDF FILE</a></li>
-                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> MARKDOWN FILE</a></li>
+                      <ul class="sub" id="show_doc">
+                         
                       </ul>
                   </li>
                   <!--  show Document start -->
@@ -301,6 +303,38 @@
 		    </div>
 		  </div>
 		<!-- Modal -->
+
+
+
+    <!-- modal uploadfile -->
+        <!-- Start Post Attachments -->
+                     <div class="modal fade" id="uploader" tabindex="-1" role="dialog" aria-labelledby="updater" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✕</button>
+                            <br>
+                            <i class="icon-credit-card icon-7x"></i>
+                            <p class="no-margin">You can upload only 1 markdown file and text file  at a time!</p>
+                          </div>
+                          <div class="modal-body">
+                            <form action="upload.php"  enctype="multipart/form-data" >                      
+                          <div class="dz-default dz-message">
+                            <span>Drop your Cover Picture here</span>
+                            </div>
+                            </form>
+                           </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default attachtopost" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                        <!-- /.modal-content -->
+                      </div>
+                      <!-- /.modal-dialog -->
+                    </div>
+                    <!-- /.modal -->
+      <!-- End Post Attachments -->
+    <!-- modal uploadfile -->
   
 
       <!--main content end-->
@@ -317,8 +351,11 @@
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
+    <!-- jquery-1.8.3.min.js -->
 
   	<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
+
+
     <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
     <script src="lib/js/simply-toast.min.js"></script>
 	<script type="text/javascript" src="lib/js/tab.js"></script>
@@ -326,12 +363,13 @@
     <script class="include" type="text/javascript" src="lib/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="lib/js/jquery.scrollTo.min.js"></script>
     <script src="lib/js/jquery.nicescroll.js" type="text/javascript"></script>
+  
 	<script src="lib/js/common-scripts.js"></script>
-
+    
      <script type="text/javascript">
     	$(document).ready(function() {
         
-         var document_name = "document";
+         var document_name = "document.md";
          var UID = <?php echo $UID;?>
          
     		$(".input").numberedtextarea().enableSmartTab();
@@ -339,7 +377,7 @@
             return fileName+".md";
         }
         function setup(){
-            $("#docName").children().html(addTypeFile(document_name));
+            $("#docName").children().html(document_name);
         }
 
         //event btn singin start
@@ -376,7 +414,7 @@
          document_name = $(this).val();
          $("#changeDocName").hide();
           $("#docName").show();
-         $("#docName").children().html(addTypeFile(document_name));
+         $("#docName").children().html(document_name);
        });
        //event change Doc Name onblur
 
@@ -395,16 +433,88 @@
                 var json_res = jQuery.parseJSON(data);
                 if(json_res.status == true){
                     $.simplyToast(json_res.message, 'success');
+                    show_doc_list(UID);
+
                 }else{
                     $.simplyToast(json_res.message, 'danger');
                 }
             });
        });
        //event save file to server
+
+       //event cilck import
+       $("#import_file").click(function(event) {
+         $("#uploader").modal('show');
+       });
+       //event cilck import
+
+       // function show doc list
+       function show_doc_list(UID){
+        $.post('Service/show_file.php', 
+          {UID: UID}, 
+          function() {
+          /*optional stuff to do after success */
+          }).done(function(data){
+            let json = jQuery.parseJSON(data);
+            if(json.status == true){
+              $("#show_doc").empty();
+              $.each(json.data,function(index, el) {
+                let name_file = '<li class="item-doc"><a  href="#" ><i class="fa fa-file-text-o" aria-hidden="true"></i>'+el+'</a></li>';
+                $("#show_doc").append(name_file);
+              });
+
+            }
+            
+          },function(){
+              //event load content from server
+               $(".item-doc").click(function(event) {
+                  let doc_name = $(this).text();
+                  $.post('Service/load_content.php', 
+                    {
+                      UID: UID,
+                      doc_name: doc_name
+                    }, 
+                    function() {
+                    /*optional stuff to do after success */
+                  }).done(function(data){
+                    let json_res = jQuery.parseJSON(data);
+                    if(json_res.status == true){
+                      $.simplyToast(json_res.message, 'success');
+                      $("#input_md").val(json_res.data);
+                      doc_update(doc_name);
+                    }else{
+                       $.simplyToast(json_res.message, 'danger');
+                    }
+                  });
+                //alert($(this).text());
+               });
+               //event load content from server
+
+          });
+
+       }
+       // function show doc list
+
+       
+
+
+       
+       // function update doc name
+       function doc_update(NewDocName){
+          document_name = NewDocName;
+          $("#docName").children().html(document_name);
+       }
+       // function update doc name
+        
+      
+       //dropzone
     		
 
         //init function
         setup();
+        if(UID!=""){
+          show_doc_list(UID);
+        }
         //init function
     	});
     </script>
