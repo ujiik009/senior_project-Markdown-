@@ -48,7 +48,7 @@
     <!-- Custom styles for this template -->
     <link href="lib/css/style.css" rel="stylesheet">
     <link href="lib/css/style-responsive.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="lib/css/agate.min.css">
    
     <style type="text/css">
 		.col-md-6{
@@ -70,6 +70,7 @@
 
 			width: 100%;
 			height: 41vw;
+      padding: 5px;
 			background-color: #ffffff;
 			overflow: scroll;
 		}
@@ -186,7 +187,7 @@
               	  <p class="centered"><a ><img src="Resource\img\logo.png" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">MarkDown Editor</h5>
               	  	
-                 
+                 <?php if($status_login) {?>
                   <li class="sub-menu" id="import_file">
                       <a href="javascript:;" >
                           <i class="fa fa-cloud-upload" aria-hidden="true"></i>
@@ -194,7 +195,7 @@
                       </a>
                       
                   </li>
-
+                  <?php } ?>
                   <?php if($status_login) {?>
                  <!--  show Document start -->
                   <li class="sub-menu">
@@ -264,7 +265,7 @@
 			  		MARKDOWN
 			  		<div class="item-right">LINE : <div style="display: inline;" id="line">0</div></div>
 			  	</div><!-- navber -->
-			  		<textarea class="input io" id="input_md"></textarea>
+			  		<textarea class="input io" id="input_md" ></textarea>
 			  	</div>
 			  </div>
 			  <div class="col-md-6">
@@ -317,11 +318,15 @@
                             <i class="icon-credit-card icon-7x"></i>
                             <p class="no-margin">You can upload only 1 markdown file and text file  at a time!</p>
                           </div>
-                          <div class="modal-body">
-                            <form action="upload.php"  enctype="multipart/form-data" >                      
-                          <div class="dz-default dz-message">
-                            <span>Drop your Cover Picture here</span>
+                          <div class="modal-body col-md-12">
+
+                            <form  action="Service/move_file_import.php?accessToken=<?=$UID ?>" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                              <label >import file .text or .md</label>
+                              <input style="width:100%;" type="file" class="form-control-file" accept="text/plain,.md" name="file_import" >
+                              
                             </div>
+                             <button class="btn btn-info" type="submit"><i class="fa fa-cloud-upload" aria-hidden="true"></i> IMPORT</button>
                             </form>
                            </div>
                             <div class="modal-footer">
@@ -353,30 +358,70 @@
     <!-- js placed at the end of the document so the pages load faster -->
     <!-- jquery-1.8.3.min.js -->
 
-  	<script type="text/javascript" src="lib/js/jquery-3.1.1.js"></script>
-
+  	<script type="text/javascript" src="lib/js/jquery-3.2.0.js"></script>
+    <script src="lib/js/highlight.min.js"></script>
 
     <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
     <script src="lib/js/simply-toast.min.js"></script>
-	<script type="text/javascript" src="lib/js/tab.js"></script>
+	  <script type="text/javascript" src="lib/js/tab.js"></script>
     <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
     <script class="include" type="text/javascript" src="lib/js/jquery.dcjqaccordion.2.7.js"></script>
     <script src="lib/js/jquery.scrollTo.min.js"></script>
     <script src="lib/js/jquery.nicescroll.js" type="text/javascript"></script>
-  
-	<script src="lib/js/common-scripts.js"></script>
+    <script src="lib/js/md_complie.js" type="text/javascript" ></script>
+    <script src="lib/js/common-scripts.js"></script>
+    <script src="lib/js/add_in.js"></script>
     
      <script type="text/javascript">
     	$(document).ready(function() {
-        
+         var tag_html_now = "";
          var document_name = "document.md";
-         var UID = <?php echo $UID;?>
+         var UID = "<?=$UID?>";
          
+         var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
+      
+         // $(".input").change(function(){
+         //    $(".output").html(regexMD_to_html($(".input").val())),highlight();
+         //  //alert(3232);
+         // });
+         // function update md 
+         function update_html(){
+          $(".output").html(regexMD_to_html($(".input").val())),highlight();
+         }
+         function save_file(){
+          var content = $("#input_md").val();
+          $.post('Service/service_save_file.php', 
+            {
+              content: content,
+              UID : UID,
+              file_name:document_name
+            }, 
+            function() {
+            /*optional stuff to do after success */
+            }).done(function(data){
+                var json_res = jQuery.parseJSON(data);
+                if(json_res.status == true){
+                    $.simplyToast(json_res.message, 'success');
+                    show_doc_list(UID);
+
+                }else{
+                    $.simplyToast(json_res.message, 'danger');
+                }
+            });
+         }
+
+         // function update md 
+
+         $(".input").bind('input', function(event) {
+           /* Act on the event */
+          update_html();
+         });
     		$(".input").numberedtextarea().enableSmartTab();
     		function addTypeFile(fileName){
             return fileName+".md";
         }
         function setup(){
+            hljs.initHighlightingOnLoad();
             $("#docName").children().html(document_name);
         }
 
@@ -394,6 +439,14 @@
     					$.post('Service/login.php', {user: $("#User").val(),password:$("#password").val()}, function() {
     						
     					}).done(function(data){
+                let json_res = jQuery.parseJSON(data);
+                if(json_res.status){
+                     $.simplyToast("Wellcome ", 'success');
+
+                     setTimeout(function(){ location.reload(); }, 1000);
+                }else{
+                      $.simplyToast(json_res.message, 'danger');
+                }
     						alert(data);
     					});
     				});
@@ -420,25 +473,7 @@
 
        //event save file to server
        $("#my_save").click(function(event) {
-          var content = $("#input_md").val();
-          $.post('Service/service_save_file.php', 
-            {
-              content: content,
-              UID : UID,
-              file_name:document_name
-            }, 
-            function() {
-            /*optional stuff to do after success */
-            }).done(function(data){
-                var json_res = jQuery.parseJSON(data);
-                if(json_res.status == true){
-                    $.simplyToast(json_res.message, 'success');
-                    show_doc_list(UID);
-
-                }else{
-                    $.simplyToast(json_res.message, 'danger');
-                }
-            });
+          save_file();
        });
        //event save file to server
 
@@ -477,14 +512,23 @@
                     function() {
                     /*optional stuff to do after success */
                   }).done(function(data){
-                    let json_res = jQuery.parseJSON(data);
-                    if(json_res.status == true){
-                      $.simplyToast(json_res.message, 'success');
-                      $("#input_md").val(json_res.data);
-                      doc_update(doc_name);
-                    }else{
-                       $.simplyToast(json_res.message, 'danger');
+                    try{
+                        let json_res = jQuery.parseJSON(data);
+                        if(json_res.status == true){
+                          $.simplyToast(json_res.message, 'success');
+                          $("#input_md").val(json_res.data);
+                          doc_update(doc_name);
+                          update_html();
+                        }else{
+                           $.simplyToast(json_res.message, 'danger');
+                        }
+                    }catch(e)
+                    {
+                        $.simplyToast("Could not open file.", 'danger');
+                       return;
                     }
+                    
+                    
                   });
                 //alert($(this).text());
                });
@@ -495,7 +539,20 @@
        }
        // function show doc list
 
+       // even submit form 
+       $("#import").submit(function(event) {
        
+
+        // var formData = new FormData($("#import")[0]);
+        // //var formData = 44;
+        //   $.post("Service/move_file_import.php", formData, function() {
+              
+        //   }).done(function(data){
+        //     alert(data);
+        //   });
+       });
+
+       // even submit form 
 
 
        
@@ -507,7 +564,26 @@
        // function update doc name
         
       
-       //dropzone
+      //shot key command
+      $(window).bind('keydown', function(event) {
+          if (event.ctrlKey || event.metaKey) {
+              switch (String.fromCharCode(event.which).toLowerCase()) {
+              case 's':
+                  event.preventDefault();
+                  save_file();
+                  break;
+              case 'f':
+                  event.preventDefault();
+                  alert('ctrl-f');
+                  break;
+              case 'g':
+                  event.preventDefault();
+                  alert('ctrl-g');
+                  break;
+              }
+          }
+      });
+      //shot key command
     		
 
         //init function

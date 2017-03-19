@@ -15,6 +15,6 @@
 				$return["message"] = "File save failed.";
 			}
 	}
-	sleep(1);
+	
 	echo json_encode($return);
 ?>
