@@ -1994,7 +1994,7 @@ label {
 	border-radius: 5px;
 }
 
-
+/*facebook*/
 .btn-facebook {
   color: #fff;
   background-color: #5193ea;
@@ -2009,6 +2009,26 @@ label {
   background-color: #2775e2;
   border-color: #2775e2;
 }
+
+/*facebook*/
+ /*google*/
+.btn-google {
+  color: #fff;
+  background-color: #d14836;
+  border-color: #d14836;
+}
+.btn-google:hover,
+.btn-google:focus,
+.btn-google:active,
+.btn-google.active,
+.open .dropdown-toggle.btn-google {
+  color: #fff;
+  background-color: #d63e1b;
+  border-color: #d63e1b;
+}
+/*google*/
+
+
 
 .btn-twitter {
   color: #fff;
