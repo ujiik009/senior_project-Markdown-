@@ -43,6 +43,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/jquery.numberedtextarea.css">
 	  <link rel="stylesheet" href="lib/css/agate.min.css">
     <link rel="stylesheet" type="text/css" href="lib/css/simply-toast.min.css"/>
+    <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
    
 
     <!-- Custom styles for this template -->
@@ -69,7 +70,7 @@
 			
 
 			width: 100%;
-			height: 41vw;
+			height: 34vw;
       padding: 5px;
 			background-color: #ffffff;
 			overflow: scroll;
@@ -131,6 +132,9 @@
       max-width: auto;
       text-align: center;
 
+    }
+    .item-doc{
+      cursor: pointer;
     }
 		
 
@@ -340,19 +344,8 @@
                     <!-- /.modal -->
       <!-- End Post Attachments -->
     <!-- modal uploadfile -->
-  
-
-      <!--main content end-->
-      <!--footer start-->
-      <footer class="site-footer">
-          <div class="text-center">
-              2014 - Alvarez.is
-              <a href="index.html#" class="go-top">
-                  <i class="fa fa-angle-up"></i>
-              </a>
-          </div>
-      </footer>
-      <!--footer end-->
+    <!--main content end-->
+    
   </section>
 
     <!-- js placed at the end of the document so the pages load faster -->
@@ -360,7 +353,7 @@
 
   	<script type="text/javascript" src="lib/js/jquery-3.2.0.js"></script>
     <script src="lib/js/highlight.min.js"></script>
-
+    <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
     <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
     <script src="lib/js/simply-toast.min.js"></script>
 	  <script type="text/javascript" src="lib/js/tab.js"></script>
@@ -371,6 +364,7 @@
     <script src="lib/js/md_complie.js" type="text/javascript" ></script>
     <script src="lib/js/common-scripts.js"></script>
     <script src="lib/js/add_in.js"></script>
+
     
      <script type="text/javascript">
     	$(document).ready(function() {
@@ -490,14 +484,17 @@
           function() {
           /*optional stuff to do after success */
           }).done(function(data){
-            let json = jQuery.parseJSON(data);
-            if(json.status == true){
+            
+            var jsondata = jQuery.parseJSON(data);
+            if(jsondata.status == true){
               $("#show_doc").empty();
-              $.each(json.data,function(index, el) {
-                let name_file = '<li class="item-doc"><a  href="#" ><i class="fa fa-file-text-o" aria-hidden="true"></i>'+el+'</a></li>';
+              $.each(jsondata.data,function(index, el) {
+                let name_file = '<li class="item-doc context-menu-one"><a  href="#" ><i class="fa fa-file-text-o" aria-hidden="true"></i>'+el+'</a></li>';
                 $("#show_doc").append(name_file);
               });
 
+            }else{
+              alert(data);
             }
             
           },function(){
@@ -546,7 +543,75 @@
           $("#docName").children().html(document_name);
        }
        // function update doc name
+
+       // function delete file from server
+       function delete_file(UID,file_name){
+          $.post('service/delete_file.php', 
+            {
+              UID: UID,
+              file_name:file_name
+
+            }, function() {
+            /*optional stuff to do after success */
+          }).done(function(data){
+            //alert(data);
+            let json_res = jQuery.parseJSON(data);
+            if(json_res.status){
+
+              $.simplyToast(json_res.message, 'success');
+              show_doc_list(UID);
+              return true;
+            }else{
+              $.simplyToast(json_res.message, 'danger');
+               return false;
+            }
+          });
+       }
+
+       // function delete file from server
         
+
+      // function click right 
+      function clickRight(){
+
+          $.contextMenu({
+              selector: '.context-menu-one', 
+              callback: function(key, options) {
+                  //var m = "clicked: " + key;
+                  //alert(m+" "+$(this).text());
+                  let file_name =  $(this).text();
+                  if(key == "delete"){
+                    //alert("ลบไฟล์"+" "+file_name);
+                     var conf = confirm("Are you sure to delete the file "+file_name+"?");
+
+                    if(conf){
+                      //alert("ลบ ไฟล์ "+file_name);
+                      if(delete_file(UID,file_name)){
+                        
+                      }else{
+
+                      }
+
+                    }else{
+                      //alert("ไม่ลบ ไฟล์ "+file_name);
+                    }
+                  }else{
+                    alert("key error");
+                  }
+              },
+              items: {
+                  
+                  "delete": {name: "Delete", icon: "delete"}
+                 
+              }
+          });
+
+          $('.context-menu-one').on('click', function(e){
+              console.log('clicked', this);
+          })    
+        
+     }
+     // function click right 
       
       //shot key command
       $(window).bind('keydown', function(event) {
@@ -575,6 +640,7 @@
         if(UID!=""){
           // islogin
           show_doc_list(UID);
+          clickRight();
         }
         //init function
     	});
