@@ -539,23 +539,7 @@
        }
        // function show doc list
 
-       // even submit form 
-       $("#import").submit(function(event) {
-       
-
-        // var formData = new FormData($("#import")[0]);
-        // //var formData = 44;
-        //   $.post("Service/move_file_import.php", formData, function() {
-              
-        //   }).done(function(data){
-        //     alert(data);
-        //   });
-       });
-
-       // even submit form 
-
-
-       
+     
        // function update doc name
        function doc_update(NewDocName){
           document_name = NewDocName;
@@ -589,6 +573,7 @@
         //init function
         setup();
         if(UID!=""){
+          // islogin
           show_doc_list(UID);
         }
         //init function
