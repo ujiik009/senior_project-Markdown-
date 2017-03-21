@@ -43,7 +43,7 @@
     <link rel="stylesheet" type="text/css" href="lib/css/jquery.numberedtextarea.css">
 	  <link rel="stylesheet" href="lib/css/agate.min.css">
     <link rel="stylesheet" type="text/css" href="lib/css/simply-toast.min.css"/>
-    <link href="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
+    <link href="lib/css/jquery.contextMenu.css" rel="stylesheet" type="text/css" />
    
 
     <!-- Custom styles for this template -->
@@ -70,7 +70,7 @@
 			
 
 			width: 100%;
-			height: 34vw;
+			height: 40vw;
       padding: 5px;
 			background-color: #ffffff;
 			overflow: scroll;
@@ -353,7 +353,7 @@
 
   	<script type="text/javascript" src="lib/js/jquery-3.2.0.js"></script>
     <script src="lib/js/highlight.min.js"></script>
-    <script src="https://swisnl.github.io/jQuery-contextMenu/dist/jquery.contextMenu.js" type="text/javascript"></script>
+    <script src="lib/js/jquery.contextMenu.js" type="text/javascript"></script>
     <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
     <script src="lib/js/simply-toast.min.js"></script>
 	  <script type="text/javascript" src="lib/js/tab.js"></script>
@@ -372,7 +372,7 @@
          var document_name = "document.md";
          var UID = "<?=$UID?>";
          
-         var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
+         //var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
       
          // $(".input").change(function(){
          //    $(".output").html(regexMD_to_html($(".input").val())),highlight();
