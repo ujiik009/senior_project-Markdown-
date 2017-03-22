@@ -595,13 +595,16 @@
                     }else{
                       //alert("ไม่ลบ ไฟล์ "+file_name);
                     }
+                  }else if(key == "rename" ){
+                    Rename_doc(file_name);
                   }else{
                     alert("key error");
                   }
               },
               items: {
-                  
+                  "rename": {name: "Rename", icon: "edit"},
                   "delete": {name: "Delete", icon: "delete"}
+
                  
               }
           });
@@ -667,6 +670,14 @@
           });
       }
      // function new Document
+
+     // function rename
+     function  Rename_doc(old_name){
+        alert("function rename "+old_name);
+     }
+
+     // function rename
+
       
       //shot key command
       $(window).bind('keydown', function(event) {
