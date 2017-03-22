@@ -202,7 +202,7 @@
                   <?php } ?>
                   <?php if($status_login) {?>
                  <!--  show Document start -->
-                  <li class="sub-menu">
+                  <li class="sub-menu menu-doc" >
                       <a href="javascript:;" >
                           <i class="fa fa-file-text-o" aria-hidden="true"></i>
                           <span>DOCUMENTS</span>
@@ -606,12 +606,67 @@
               }
           });
 
+           $.contextMenu({
+              selector: '.menu-doc', 
+              callback: function(key, options) {
+                  //var m = "clicked: " + key;
+                  //alert(m+" "+$(this).text());
+                  let file_name =  $(this).text();
+                  if(key == "New"){
+                    NewDoc();
+                  }else{
+                    alert("key error");
+                  }
+              },
+              items: {
+                  
+                  "New": {name: "New Document", icon: "add"}
+                 
+              }
+          });
+
           $('.context-menu-one').on('click', function(e){
               console.log('clicked', this);
-          })    
+          });
+
+          $('.menu-doc').on('click', function(e){
+              console.log('clicked', this);
+          });
         
      }
      // function click right 
+
+     // function new Document
+      function NewDoc(){
+        let name_doc = "NewDocument.md";
+        //alert("function new doc");
+          $.post('Service/add_new_file.php', 
+            {
+              UID: UID,
+              NewDoc:name_doc
+            }, 
+            function() {
+            /*optional stuff to do after success */
+            }
+          ).done(function(data){
+            try{
+              let json = jQuery.parseJSON(data);
+              if(json.status){
+                show_doc_list(UID);
+                $.simplyToast("Create file success", 'success');
+              }else{
+                 $.simplyToast(json.message, 'danger');
+              }
+            }catch(e){
+              $.simplyToast("parseJSON error", 'danger');
+            }
+            
+            //alert(data);
+          
+
+          });
+      }
+     // function new Document
       
       //shot key command
       $(window).bind('keydown', function(event) {
