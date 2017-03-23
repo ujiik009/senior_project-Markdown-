@@ -345,6 +345,33 @@
       <!-- End Post Attachments -->
     <!-- modal uploadfile -->
     <!--main content end-->
+
+    <!-- model rename start -->
+      <div class="modal fade bs-example-modal-lg" id="rename-modal" tabindex="-1" role="dialog" aria-labelledby="updater" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✕</button>
+                  <br>
+                  <i class="icon-credit-card icon-7x"></i>
+                  <h3><p class="no-margin" id="name-doc-model">name doc</p></h3>
+                </div>
+                <div class="modal-body col-md-12">
+
+                <input type="text" class="form-control" id="input-rename" />
+                   <a type="button" class="btn btn-success attachtopost" id="conf-rename">Rename</a>
+                 </div>
+                  <div class="modal-footer">
+                 
+                  <button type="button" class="btn btn-default attachtopost" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+      </div>
+                    <!-- /.modal -->
+    <!-- model rename stop -->
     
   </section>
 
@@ -596,7 +623,22 @@
                       //alert("ไม่ลบ ไฟล์ "+file_name);
                     }
                   }else if(key == "rename" ){
-                    Rename_doc(file_name);
+                    
+
+                    $("#rename-modal").modal('show');
+                    $("#name-doc-model").text("Document name : "+ file_name);
+                    $("#input-rename").empty().val(file_name);
+                    
+                    $("#conf-rename").click(function() {
+                      let last_name = $("#input-rename").val();
+                      Rename_doc(file_name,last_name);
+                      console.log($(this));
+                      //alert(444);
+                      
+                    });
+
+
+
                   }else{
                     alert("key error");
                   }
@@ -666,8 +708,11 @@
      // function new Document
 
      // function rename
-     function  Rename_doc(old_name){
-        alert("function rename "+old_name);
+     function  Rename_doc(old_name,last_name){
+        //alert("function rename "+old_name);
+        alert("ไฟล์เก่า "+old_name+" "+"ไฟล์ใหม้ "+last_name);
+       
+
      }
 
      // function rename
