@@ -628,13 +628,7 @@
               }
           });
 
-          $('.context-menu-one').on('click', function(e){
-              console.log('clicked', this);
-          });
-
-          $('.menu-doc').on('click', function(e){
-              console.log('clicked', this);
-          });
+         
         
      }
      // function click right 
