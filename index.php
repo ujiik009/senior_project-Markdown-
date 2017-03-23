@@ -356,10 +356,9 @@
                   <i class="icon-credit-card icon-7x"></i>
                   <h3><p class="no-margin" id="name-doc-model">name doc</p></h3>
                 </div>
-                <div class="modal-body col-md-12">
+                <div class="modal-body col-md-12 " id="content_model_rename">
 
-                <input type="text" class="form-control" id="input-rename" />
-                   <a type="button" class="btn btn-success attachtopost" id="conf-rename">Rename</a>
+                
                  </div>
                   <div class="modal-footer">
                  
@@ -623,17 +622,23 @@
                       //alert("ไม่ลบ ไฟล์ "+file_name);
                     }
                   }else if(key == "rename" ){
-                    
+                    console.log($(this));
 
-                    $("#rename-modal").modal('show');
+                    $("#rename-modal").modal('toggle');
                     $("#name-doc-model").text("Document name : "+ file_name);
-                    $("#input-rename").empty().val(file_name);
-                    
-                    $("#conf-rename").click(function() {
+                   
+                    $("#content_model_rename").empty();
+                    $("#content_model_rename").append(' <input type="text" class="form-control" id="input-rename" /><a type="button" class="btn btn-success attachtopost conf" >Rename</a>');
+                     $("#input-rename").empty().val(file_name);
+                  
+                    //alert("rename");
+                    $(".conf").click(function() {
+
                       let last_name = $("#input-rename").val();
                       Rename_doc(file_name,last_name);
-                      console.log($(this));
+                      //console.log($(this));
                       //alert(444);
+
                       
                     });
 
@@ -710,7 +715,29 @@
      // function rename
      function  Rename_doc(old_name,last_name){
         //alert("function rename "+old_name);
-        alert("ไฟล์เก่า "+old_name+" "+"ไฟล์ใหม้ "+last_name);
+        //alert("ไฟล์เก่า "+old_name+" "+"ไฟล์ใหม้ "+last_name);
+        $.post('Service/service_rename.php', 
+          {
+            UID: UID,
+            old_file:old_name,
+            new_file:last_name
+          },
+           function() {
+          /*optional stuff to do after success */
+           }
+        ).done(function(data){
+          try{
+            let json_res_rename = jQuery.parseJSON(data);
+            if(json_res_rename){
+               $("#rename-modal").modal('toggle');
+                show_doc_list(UID);
+            }else{
+              $.simplyToast(json_res_rename.message, 'danger');
+            }
+          }catch(e){
+
+          }
+        });
        
 
      }
