@@ -219,9 +219,9 @@
                           <span>EXPORT FILE</span>
                       </a>
                       <ul class="sub">
-                          <li><a  href="#"><i class="fa fa-file-code-o" aria-hidden="true"></i> HTML FILE</a></li>
-                          <li><a  href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> PDF FILE</a></li>
-                          <li><a  href="#"><i class="fa fa-file-text-o" aria-hidden="true"></i> MARKDOWN FILE</a></li>
+                          <li><a  href="#" type-file="html" class="export-file" ><i class="fa fa-file-code-o"  aria-hidden="true"></i> HTML FILE</a></li>
+                          <li><a  href="#" type-file="pdf" class="export-file"><i class="fa fa-file-pdf-o"  aria-hidden="true"></i> PDF FILE</a></li>
+                          <li><a  href="#" type-file="md" class="export-file"><i class="fa fa-file-text-o"  aria-hidden="true"></i> MARKDOWN FILE</a></li>
                       </ul>
                   </li>
                   <?php if($status_login) {?>
@@ -377,7 +377,7 @@
     <!-- js placed at the end of the document so the pages load faster -->
     <!-- jquery-1.8.3.min.js -->
 
-  	<script type="text/javascript" src="lib/js/jquery-3.2.0.js"></script>
+  	<script type="text/javascript" src="lib/js/jquery-3.2.0.min.js"></script>
     <script src="lib/js/highlight.min.js"></script>
     <script src="lib/js/jquery.contextMenu.js" type="text/javascript"></script>
     <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
@@ -390,6 +390,7 @@
     <script src="lib/js/md_complie.js" type="text/javascript" ></script>
     <script src="lib/js/common-scripts.js"></script>
     <script src="lib/js/add_in.js"></script>
+    <script type="text/javascript" src="lib/js/FileSaver.js"></script>
 
     
      <script type="text/javascript">
@@ -406,7 +407,8 @@
          // });
          // function update md 
          function update_html(){
-          $(".output").html(regexMD_to_html($(".input").val())),highlight();
+          tag_html_now = regexMD_to_html($(".input").val());
+          $(".output").html(tag_html_now),highlight();
          }
          function save_file(){
           var content = $("#input_md").val();
@@ -595,6 +597,30 @@
        }
 
        // function delete file from server
+
+       // event ckick export file
+       $(".export-file").click(function(event) {
+         let type_file = $(this).attr("type-file");
+         // tag_html_now
+          let Doc_name_save = document_name.split(".");
+         if(type_file == "md"){
+            let text_md = $("#input_md").val();
+            var file = new Blob([text_md], {type: "text/plain;charset=utf-8"}); //IE<10
+            saveAs(file, Doc_name_save[0]+".md"); 
+         }else if(type_file == "html"){
+            var file = new Blob([tag_html_now], {type: "text/plain;charset=utf-8"}); //IE<10
+            saveAs(file, Doc_name_save[0]+".html"); 
+             //alert("Export file html");
+         }else if(type_file == "pdf"){
+              alert("Export file pdf");
+         }else{
+           alert(type_file);
+         }
+        
+       });
+
+
+       // event ckick export file
         
 
       // function click right 
