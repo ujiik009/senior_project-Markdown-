@@ -383,7 +383,7 @@
                   <h4><p class="no-margin" id="name-doc-model"><i class="fa fa-code" aria-hidden="true"></i>  HTML SOURCE </p></h4>
                 </div>
                 <div class="modal-body col-md-12 " id="content_model_rename">
-                <textarea class="form-control" style="height: 500px;width: 100%" id="textarea-modal-html"></textarea>
+                <textarea class="form-control" style="height: 60vh;width:inherit;" id="textarea-modal-html"></textarea>
                 
                  </div>
                   <div class="modal-footer">
