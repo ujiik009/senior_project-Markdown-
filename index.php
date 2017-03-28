@@ -70,7 +70,7 @@
 			
 
 			width: 100%;
-			height: 40vw;
+			height: 37vw;
       padding: 5px;
 			background-color: #ffffff;
 			overflow: scroll;
@@ -361,7 +361,7 @@
                 
                  </div>
                   <div class="modal-footer">
-                 
+                 <a type="button" class="btn btn-success attachtopost conf" >Rename</a>
                   <button type="button" class="btn btn-default attachtopost" data-dismiss="modal">Close</button>
                 </div>
               </div>
@@ -685,7 +685,7 @@
                     $("#name-doc-model").text("Document name : "+ file_name);
                    
                     $("#content_model_rename").empty();
-                    $("#content_model_rename").append(' <input type="text" class="form-control" id="input-rename" /><a type="button" class="btn btn-success attachtopost conf" >Rename</a>');
+                    $("#content_model_rename").append(' <input type="text" class="form-control" id="input-rename" />');
                      $("#input-rename").empty().val(file_name);
                   
                     //alert("rename");
