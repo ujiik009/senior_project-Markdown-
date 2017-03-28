@@ -280,7 +280,7 @@
 				  	   <li class="dropdown">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;padding-right: 10px;">PREVIEW AS<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
-				            <li><a href="#"><i class="fa fa-code" aria-hidden="true"></i> HTML</a></li>
+				            <li id="btn-show-html"><a href="#"><i class="fa fa-code" aria-hidden="true"></i> HTML</a></li>
 				            <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true" style="padding-right: 2px;"></i> PDF</a></li>
 				            		       
 				          </ul>
@@ -371,6 +371,32 @@
       </div>
                     <!-- /.modal -->
     <!-- model rename stop -->
+
+    <!-- model show code html -->
+       <div class="modal fade bs-example-modal-lg" id="show-html-modal" tabindex="-1" role="dialog" aria-labelledby="updater" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">✕</button>
+                  <br>
+                  <i class="icon-credit-card icon-7x"></i>
+                  <h4><p class="no-margin" id="name-doc-model"><i class="fa fa-code" aria-hidden="true"></i>  HTML SOURCE </p></h4>
+                </div>
+                <div class="modal-body col-md-12 " id="content_model_rename">
+                <textarea class="form-control" style="height: 500px;width: 100%" id="textarea-modal-html"></textarea>
+                
+                 </div>
+                  <div class="modal-footer">
+                 
+                  <button type="button" class="btn btn-default attachtopost" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+      </div>
+
+    <!-- model show code html -->
     
   </section>
 
@@ -405,7 +431,12 @@
          //    $(".output").html(regexMD_to_html($(".input").val())),highlight();
          //  //alert(3232);
          // });
-         // function update md 
+         // function update md
+         $("#btn-show-html").click(function(event) {
+           $("#textarea-modal-html").val(tag_html_now);
+           $("#show-html-modal").modal("toggle");
+         });
+
          function update_html(){
           tag_html_now = regexMD_to_html($(".input").val());
           $(".output").html(tag_html_now),highlight();
