@@ -469,6 +469,7 @@
            /* Act on the event */
           update_html();
          });
+         
     		$(".input").numberedtextarea().enableSmartTab();
     		function addTypeFile(fileName){
             return fileName+".md";
@@ -631,28 +632,43 @@
 
        // event ckick export file
        $(".export-file").click(function(event) {
-         let type_file = $(this).attr("type-file");
-         // tag_html_now
-          let Doc_name_save = document_name.split(".");
-         if(type_file == "md"){
-            let text_md = $("#input_md").val();
-            var file = new Blob([text_md], {type: "text/plain;charset=utf-8"}); //IE<10
-            saveAs(file, Doc_name_save[0]+".md"); 
-         }else if(type_file == "html"){
-            var file = new Blob([tag_html_now], {type: "text/plain;charset=utf-8"}); //IE<10
-            saveAs(file, Doc_name_save[0]+".html"); 
-             //alert("Export file html");
-         }else if(type_file == "pdf"){
-              alert("Export file pdf");
-         }else{
-           alert(type_file);
-         }
+           let type_file = $(this).attr("type-file");
+           // tag_html_now
+            let Doc_name_save = document_name.split(".");
+           if(type_file == "md"){
+              let text_md = $("#input_md").val();
+              var file = new Blob([text_md], {type: "text/plain;charset=utf-8"}); //IE<10
+              saveAs(file, Doc_name_save[0]+".md"); 
+           }else if(type_file == "html"){
+              var file = new Blob([tag_html_now], {type: "text/plain;charset=utf-8"}); //IE<10
+              saveAs(file, Doc_name_save[0]+".html"); 
+               //alert("Export file html");
+           }else if(type_file == "pdf"){
+                ajax_renderPDF_php(UID);
+                //alert("Export file pdf");
+           }else{
+             alert(type_file);
+           }
         
        });
-
-
        // event ckick export file
-        
+      //function ajax to render service php
+      function ajax_renderPDF_php(UID){
+        $.post('Service/service_render_pdf.php', 
+          {
+            UID       : UID,
+            html_tag  : tag_html_now
+          }, 
+          function() {
+          /*optional stuff to do after success */
+          }
+        ).done(function(data){
+          //alert(data);
+          console.log(data);
+        });
+        //alert(tag_html_now);
+      }
+      //function ajax to render service php
 
       // function click right 
       function clickRight(){
@@ -731,10 +747,7 @@
                  
               }
           });
-
-         
-        
-     }
+      }
      // function click right 
 
      // function new Document
@@ -747,7 +760,7 @@
               NewDoc:name_doc
             }, 
             function() {
-            /*optional stuff to do after success */
+           
             }
           ).done(function(data){
             try{
@@ -771,8 +784,6 @@
 
      // function rename
      function  Rename_doc(old_name,last_name){
-        //alert("function rename "+old_name);
-        //alert("ไฟล์เก่า "+old_name+" "+"ไฟล์ใหม้ "+last_name);
         $.post('Service/service_rename.php', 
           {
             UID: UID,
@@ -795,8 +806,6 @@
 
           }
         });
-       
-
      }
 
      // function rename
