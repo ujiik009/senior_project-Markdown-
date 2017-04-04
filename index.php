@@ -663,8 +663,8 @@
           /*optional stuff to do after success */
           }
         ).done(function(data){
-          //alert(data);
-          console.log(data);
+          alert(data);
+          //console.log(data);
         });
         //alert(tag_html_now);
       }
