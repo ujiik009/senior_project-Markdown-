@@ -497,7 +497,7 @@
                 }else{
                       $.simplyToast(json_res.message, 'danger');
                 }
-    						alert(data);
+    						//alert(data);
     					});
     				});
     			});

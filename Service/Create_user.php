@@ -5,6 +5,7 @@
 	// $_POST['email'] = "testEmail";
 	// $_POST['pass'] = "textPass";
 
+
 	$return = array();
 	$user_id = date("dmYHis");
 	$create_date = date("d-m-Y H:i:s");
@@ -19,12 +20,17 @@
 				$return['message'] = "User already";
 			}else{
 				if(create_user($obj_con,$user_id,$_POST['email'],$_POST['pass'],$create_date)){
-					mkdir($path['temp_user'].$user_id,0775);
-					mkdir($path['temp_user'].$user_id."/file_temp",0775);
-					file_put_contents($path['temp_user'].$user_id."/config.json", "");
-					//echo $path['temp_user'].$user_id;
-					$return['status'] = true;
-					$return['message'] = "Create User successful";
+					if(mkdir($path['temp_user'].$user_id,0777)){
+						mkdir($path['temp_user'].$user_id."/file_temp",0777);
+						file_put_contents($path['temp_user'].$user_id."/config.json", "");
+						//echo $path['temp_user'].$user_id;
+						$return['status'] = true;
+						$return['message'] = "Create User successful";
+					}else{
+						$return['status'] = false;
+						$return['message'] = "can not create file";
+					}
+					
 				}else{
 					$return['status'] = false;
 					$return['message'] = "Create User Unsuccessful".mysqli_error($obj_con);
