@@ -281,7 +281,7 @@
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;padding-right: 10px;">PREVIEW AS<span class="caret"></span></a>
 				          <ul class="dropdown-menu">
 				            <li id="btn-show-html"><a href="#"><i class="fa fa-code" aria-hidden="true"></i> HTML</a></li>
-				            <li><a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true" style="padding-right: 2px;"></i> PDF</a></li>
+				           
 				            		       
 				          </ul>
 				        </li>
@@ -426,11 +426,7 @@
          var UID = "<?=$UID?>";
          
          //var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
-      
-         // $(".input").change(function(){
-         //    $(".output").html(regexMD_to_html($(".input").val())),highlight();
-         //  //alert(3232);
-         // });
+   
          // function update md
          $("#btn-show-html").click(function(event) {
            $("#textarea-modal-html").val(tag_html_now);
@@ -664,7 +660,7 @@
           }
         ).done(function(data){
           alert(data);
-          //console.log(data);
+          console.log(data);
         });
         //alert(tag_html_now);
       }
