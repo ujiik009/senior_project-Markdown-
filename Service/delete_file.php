@@ -9,13 +9,15 @@
 
 		if(file_exists($path_file)){
 			//echo "สามารถ ลบได้"."<br>";
-			if(unlink($path_file)){
+			if(chmod($path_file, 777)){
+				if(unlink($path_file)){
 				$return['status'] = true;
 				$return['message'] = "Delete file {$_POST['file_name']} successfully";
 				
-			}else{
-				$return['status'] = false;
-				$return['message'] = "Deleted file failed.";
+				}else{
+					$return['status'] = false;
+					$return['message'] = "Deleted file failed.";
+				}
 			}
 		}else{
 			$return['status'] = false;

@@ -11,6 +11,7 @@
 		
 		if(file_exists("{$path['temp_user']}/{$_POST['UID']}/file_temp/")){
 
+
 			chdir("{$path['temp_user']}/{$_POST['UID']}/file_temp/");
 			if(file_exists("{$_POST['NewDoc']}")){
 				$_POST['NewDoc'] = explode(".",$_POST['NewDoc'])[0];
@@ -24,11 +25,12 @@
 				    }
 				}
 				file_put_contents("{$_POST['NewDoc']} ({$count_file_match}).md", "");
+				//chmod("{$_POST['NewDoc']} ({$count_file_match}).md", 777);
 				$return["status"] = true;
-				
 			}else{
 				$_POST['NewDoc'] = explode(".",$_POST['NewDoc'])[0];
 				file_put_contents("{$_POST['NewDoc']}.md", "");
+				//chmod("{$_POST['NewDoc']}.md", 777);
 				$return["status"] = true;
 			}
 

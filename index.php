@@ -602,7 +602,7 @@
 
        // function delete file from server
        function delete_file(UID,file_name){
-          $.post('service/delete_file.php', 
+          $.post('Service/delete_file.php', 
             {
               UID: UID,
               file_name:file_name
