@@ -3,7 +3,14 @@
 	session_destroy();
 	//unset($_SESSION['UID']);
 	//setcookie("UID", "", time()+1);
-	setcookie("UID", "", time(), "/");
+	$return = array();
+	if(setcookie("UID", "", time(), "/")){
+		$return['status'] = true;
+	}else{
+		$return['status'] = false;
+	}
+
+	echo json_encode($return);
 	
 
 ?>

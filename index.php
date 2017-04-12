@@ -171,8 +171,11 @@
             	<ul class="nav pull-right top-menu">
                     <li id="docName"><a class="mylist"  style="color: #ffffff;padding-top: 7px;cursor: pointer;">Untitled Document.md</a></li>
                     <li id="changeDocName" style="display: none;"><a class="mylist" style="color: #ffffff;padding-top: 4px;cursor: pointer;"><input type="text" style="color: #000000"></input></a></li>
-                    <li style="cursor: pointer;"><a class="logout" id="singin" >SING IN</a></li>
-            	       
+                    <?php if($status_login) {?>
+                     <li style="cursor: pointer;"><a class="logout" id="singout" >SING OUT</a></li>
+                     <?php }else{?>
+                    <li style="cursor: pointer;"><a class="logout" id="singin" ">SING IN</a></li>
+                     <?php }?>
               </ul>
             </div>
         </header>
@@ -817,6 +820,28 @@
           }
       });
       //shot key command
+
+      // event sing out 
+      $("#singout").click(function(event) {
+        singout();
+      });
+      // event sing out 
+
+      // function singout
+      function singout(){
+        $.get('Service/logout.php', function() {}).done(function(data){
+            try{
+                let json_res = jQuery.parseJSON(data);
+                if(json_res.status == true){
+                    location.reload();
+                }
+            }catch(e){
+              $.simplyToast(e, 'danger');
+            }
+        });
+        
+      }
+      // function singout
     		
 
         //init function
