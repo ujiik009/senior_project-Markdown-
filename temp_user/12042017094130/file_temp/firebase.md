@@ -10,7 +10,7 @@ Firebase Simple Login offers several types of authentication: email/password, an
 third-party integration with Facebook, GitHub, Google, and Twitter. It allows you to authenticate
 your users without having to manually store authentication credentials or run a server.
 
-
+## ~~ikool009~~
 ## Deprecation Warning!
 
 Firebase Simple Login is now a part of the core Firebase library. As a result, this standalone
