@@ -8,14 +8,13 @@
       require 'config_system/config_DB.php';
       require 'lib/php/public_function.php';
       $status_cookie = check_cookie($obj_con,"UID");
+      
       function check_login($status_cookie){
         if($status_cookie){
          $GLOBALS['UID'] = encrypt_decrypt('decrypt',$_COOKIE['UID']);
-           
           return true;
         }elseif(isset($_SESSION['data_user'])){
           $GLOBALS['UID'] = $_SESSION['data_user']['user_id'];
-           
           return true;
         }else{
           return false;
@@ -672,43 +671,34 @@
           $.contextMenu({
               selector: '.context-menu-one', 
               callback: function(key, options) {
-                  //var m = "clicked: " + key;
-                  //alert(m+" "+$(this).text());
+                
                   let file_name =  $(this).text();
                   if(key == "delete"){
-                    //alert("ลบไฟล์"+" "+file_name);
+                   
                      var conf = confirm("Are you sure to delete the file "+file_name+"?");
 
                     if(conf){
-                      //alert("ลบ ไฟล์ "+file_name);
+                      
                       if(delete_file(UID,file_name)){
                         
                       }else{
-
+                        return;
                       }
 
                     }else{
-                      //alert("ไม่ลบ ไฟล์ "+file_name);
+                      return;
                     }
                   }else if(key == "rename" ){
                     console.log($(this));
 
                     $("#rename-modal").modal('toggle');
                     $("#name-doc-model").text("Document name : "+ file_name);
-                   
                     $("#content_model_rename").empty();
                     $("#content_model_rename").append(' <input type="text" class="form-control" id="input-rename" />');
-                     $("#input-rename").empty().val(file_name);
-                  
-                    //alert("rename");
+                    $("#input-rename").empty().val(file_name);
                     $(".conf").click(function() {
-
                       let last_name = $("#input-rename").val();
                       Rename_doc(file_name,last_name);
-                      //console.log($(this));
-                      //alert(444);
-
-                      
                     });
 
 
@@ -793,13 +783,13 @@
           try{
             let json_res_rename = jQuery.parseJSON(data);
             if(json_res_rename){
-               $("#rename-modal").modal('toggle');
+               $("#rename-modal").modal('hide');
                 show_doc_list(UID);
             }else{
               $.simplyToast(json_res_rename.message, 'danger');
             }
           }catch(e){
-
+            alert("Renae false");
           }
         });
      }
@@ -838,6 +828,8 @@
         }
         //init function
     	});
+
+    
     </script>
   </body>
 </html>
