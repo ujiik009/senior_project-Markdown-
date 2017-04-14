@@ -614,14 +614,15 @@
           }).done(function(data){
             //alert(data);
             let json_res = jQuery.parseJSON(data);
-            if(json_res.status){
 
+            if(json_res.status){
               $.simplyToast(json_res.message, 'success');
               show_doc_list(UID);
-              return true;
+              //return true;
             }else{
+
               $.simplyToast(json_res.message, 'danger');
-               return false;
+               //return false;
             }
           });
        }
@@ -680,14 +681,8 @@
                    
                      var conf = confirm("Are you sure to delete the file "+file_name+"?");
 
-                    if(conf){
-                      
-                      if(delete_file(UID,file_name)){
-                        
-                      }else{
-                        return;
-                      }
-
+                    if(conf){    
+                      delete_file(UID,file_name);
                     }else{
                       return;
                     }
