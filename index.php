@@ -51,11 +51,22 @@
     <link rel="stylesheet" href="lib/css/agate.min.css">
    
     <style type="text/css">
+    #section1 {padding-top:35px;height:auto; }
+    #section2 {padding-top:35px;height:auto; }
+    #section3 {padding-top:35px;height:auto; }
+    #section4 {padding-top:35px;height:auto; }
+    #section5 {padding-top:35px;height:auto; }
+    #section6 {padding-top:35px;height:auto; }
+    #section7 {padding-top:35px;height:auto; }
 		.col-md-6{
 			padding: 0px;
 			/*background-color: #c0c2e5;*/
 			height: auto;
 		}
+
+    .myhorizontal{
+      border-top: 1px solid #8c8b8b;
+    }
     #tutorial-content{
       background-color: #ffffff;
       height: 90vh;
@@ -319,18 +330,235 @@
                 <!-- <div class="container-fluid"> -->
                     <div class="col-md-2" style="padding-left: 0px;padding-right: 0px;height: initial;">
                        <ul class="nav nav-pills nav-stacked">
-                        <li><a href="#">Menu 1</a></li>
-                        <li><a href="#">Menu 2</a></li>
-                        <li><a href="#">Menu 3</a></li>
-                        <li><a href="#">Menu 3</a></li>
-                        <li><a href="#">Menu 3</a></li>
-                        <li><a href="#">Menu 3</a></li>
-                        <li><a href="#">Menu 3</a></li>
-                        <li><a href="#">Menu 3</a></li>
+                        <li><a class="content-id" href="#section1">Headers</a></li>
+                        <li><a class="content-id" href="#section2">Emphasis</a></li>
+                        <li><a class="content-id" href="#section3">Lists</a></li>
+                        <li><a class="content-id" href="#section4">Links</a></li>
+                        <li><a class="content-id" href="#section5">Images</a></li>
+                        <li><a class="content-id" href="#section6">Code and Syntax Highlighting</a></li>
+                        <li><a class="content-id" href="#section7">Horizontal Rule</a></li>
+                        <li><a class="content-id" href="#section8">Line Breaks</a></li>
                       </ul>
                     </div>
-                    <div class="col-md-10" style="background-color: #cee1ff;height: 87.6%" >
-                    f
+                    <div class="col-md-10 content-tutorial" style="height: 87.6%;max-height: 87.6%;overflow: scroll;" >
+                      <style type="text/css">
+                        .mypre{
+                          width: auto;
+                          height: auto;
+                          background-color: #d6e4f9;
+                          overflow: scroll;
+                        }
+                        code{
+                          height: inherit
+
+                        }
+
+                      </style>
+                      <div id="section1" class="container-fluid" >
+                      <h1>Header</h1>
+                      <hr class="myhorizontal">
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->                  
+                      <pre class="mypre">
+                       <code>
+# H1
+## H2
+### H3
+#### H4
+##### H5
+###### H6
+
+Alternatively, for H1 and H2, an underline-ish style:
+
+Alt-H1
+======
+
+Alt-H2
+------
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                        </code>
+                      </pre>               
+                        <h1>
+                          H1
+                        </h1>
+                        </br><h2>
+                          H2
+                        </h2>
+                        </br><h3>
+                          H3
+                        </h3>
+                        </br><h4>
+                          H4
+                        </h4>
+                        </br><h5>
+                          H5
+                        </h5>
+                        </br><h6>
+                          H6
+                        </h6>
+                        </br></br>Alternatively, for H1 and H2, an underline-ish style:
+                        </br><h1>Alt-H1<hr style='border-top: 1px solid #8c8b8b;' /></h1>
+                        </br><h2>Alt-H2<hr style='border-top: 1px solid #8c8b8b;' /></h2>
+                      </div>
+                      <div id="section2" class="container-fluid">
+                        <h1>Emphasis</h1>
+                        <hr class="myhorizontal">
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class ='no'>
+italics this is a *book* or _book_ .
+
+Strong bold this is a **pan** or __pan__.
+
+Combined This is a **pen and a _pencil_**.
+
+Strikethrough I don't like ~~red~~ color.
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->
+                        <br/><br/>
+                       <h5> 
+                          italics this is a <em>book</em> or <em>book</em> .
+                          </br></br>Strong bold this is a <strong>pan</strong> or <strong>pan</strong>.
+                          </br></br>Combined This is a <strong>pen and a <em>pencil</em></strong>.
+                          </br></br>Strikethrough I don't like <del>red</del> color.
+                       </h5>
+                      </div>
+                      <div id="section3" class="container-fluid">
+                        <h1>Lists</h1>
+                        <hr class="myhorizontal">
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class ='no'>
+### List item example
+  * item1
+  * item2
+  * item3
+  * item4
+  ---
+  + item1
+  + item2
+  + item3
+  + item4 
+  ---
+  - item1 
+  - item2 
+  - item3 
+  - item4 
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->
+                        <h3>
+                          List item example
+                        </h3>
+                        <ol style='list-style-type: disc;'><li> item1</li></ol>
+                        <ol style='list-style-type: disc;'><li> item2</li></ol>
+                        <ol style='list-style-type: disc;'><li> item3</li></ol>
+                        <ol style='list-style-type: disc;'><li> item4</li></ol>
+                        <hr />
+                        <ol style='list-style-type: disc;'><li> item1</li></ol>
+                        <ol style='list-style-type: disc;'><li> item2</li></ol>
+                        <ol style='list-style-type: disc;'><li> item3</li></ol>
+                        <ol style='list-style-type: disc;'><li> item4 </li></ol>
+                        <hr />
+                        <ol style='list-style-type: circle;'><li> item1</li></ol> 
+                        <ol style='list-style-type: circle;'><li> item2</li></ol> 
+                        <ol style='list-style-type: circle;'><li> item3</li></ol> 
+                        <ol style='list-style-type: circle;'><li> item4</li></ol> 
+                      </div>
+                      <div id="section4" class="container-fluid">
+                        <h1>Links</h1>
+                        <hr class="myhorizontal">
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class ='no'>
+### link example
+
+#### This is my [facebook](https://www.facebook.com/ikool009)
+
+#### This is my [github](https://github.com/ujiik009)
+
+### Combined
+
+#### This is my **[facebook](https://www.facebook.com/ikool009)**
+
+#### This is my *[github](https://github.com/ujiik009)*
+
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->
+<!-- ..................................................... -->
+                          <h3>
+                            link example
+                          </h3>
+                          </br>
+                          <h4>
+                            This is my <a href='https://www.facebook.com/ikool009'>facebook</a>
+                          </h4>
+                          </br>
+                          <h4>
+                            This is my <a href='https://github.com/ujiik009'>github</a>
+                          </h4>
+                          </br>
+                          <h3>
+                            Combined
+                          </h3>
+                          </br>
+                          <h4>
+                            This is my <strong><a href='https://www.facebook.com/ikool009'>facebook</a></strong>
+                          </h4>
+                          </br>
+                          <h4>
+                            This is my <em><a href='https://github.com/ujiik009'>github</a></em>
+                          </h4>
+<!-- .............................................. -->
+                      </div>
+                      <div id="section5" class="container-fluid">
+                        <h1>Images</h1>
+                        <hr class="myhorizontal">
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class ='no'>
+### link image
+
+**syntax ![text](url image)**
+
+logo facebook ![facebook](https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png)
+
+### Optional function customize size
+
+**syntax ![text](url image)(width)(height)**
+
+logo facebook ![facebook](https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png)(100px)(100px)
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->      
+
+<!-- ......................................... -->
+                            <h3>
+                              link image
+                            </h3>
+                            </br></br><strong>syntax ![text](url image)</strong>
+                            </br>logo facebook <img src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png" alt="facebook" />
+                            </br><h3>
+                              Optional function customize size
+                            </h3>
+                            </br></br><strong>syntax  ![text](url image)(width)(height)</strong>
+                            </br>logo facebook <img src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png" alt="facebook" style="width:100px;height:100px;"/>
+
+<!-- .............................................. -->
+
+                      </div>
+                      <div id="section6" class="container-fluid">
+                        <h1>Code and Syntax Highlighting</h1>
+                        <hr class="myhorizontal">
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class ='no'>
+italics this is a *book* or _book_ .
+
+Strong bold this is a **pan** or __pan__.
+
+Combined This is a **pen and a _pencil_**.
+
+Strikethrough I don't like ~~red~~ color.
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->                      
+                      </div>
+                      <div id="section7" class="container-fluid">
+                        <h1>Section 5</h1>
+                        <p>Click on the different Section links in the navbar to see the smooth scrolling effect.</p>
+                      </div>
                     </div>
                 <!-- </div> -->
             </div><!-- tutorial-content -->
@@ -466,8 +694,8 @@
     <script type="text/javascript" src="lib/js/FileSaver.js"></script>
 
     
-     <script type="text/javascript">
-    	$(document).ready(function() {
+<script type="text/javascript">
+$(document).ready(function() {
          var tag_html_now = "";
          var document_name = "document.md";
          var UID = "<?=$UID?>";
@@ -520,6 +748,9 @@
         function setup(){
             hljs.initHighlightingOnLoad();
             $("#docName").children().html(document_name);
+            $('pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
         }
 
         // event btn tutorail
@@ -893,6 +1124,37 @@
         
       }
       // function singout
+
+
+      ///////////////////////////////////////
+         // Add scrollspy to <body>
+          $('.content-tutorial').scrollspy({target: "", offset: 100});   
+
+          // Add smooth scrolling on all links inside the navbar
+          $(".content-id").on('click', function(event) {
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('.content-tutorial').animate({
+                scrollTop: $(hash).offset().top
+              }, 1000, function(){
+           
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            }  // End if
+
+            //alert(555);
+          });
+
+      ////////////////////////////////////////
     		
 
         //init function
@@ -903,7 +1165,7 @@
           clickRight();
         }
         //init function
-    	});
+});
 
     
     </script>
