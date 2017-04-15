@@ -56,6 +56,17 @@
 			/*background-color: #c0c2e5;*/
 			height: auto;
 		}
+    #tutorial-content{
+      background-color: #ffffff;
+      height: 90vh;
+      border-radius: 12px 12px 12px 12px;
+      -moz-border-radius: 12px 12px 12px 12px;s
+      -webkit-border-radius: 12px 12px 12px 12px;
+      border: 0px solid #ffbfff;
+      -webkit-box-shadow: 3px -1px 8px 0px rgba(0,0,0,0.75);
+      -moz-box-shadow: 3px -1px 8px 0px rgba(0,0,0,0.75);
+      box-shadow: 3px -1px 8px 0px rgba(0,0,0,0.75);
+    }
 		.box{
 			padding: 5px;
 			height: auto;
@@ -65,11 +76,17 @@
 			box-shadow: 4px -5px 5px -4px rgba(0,0,0,0.75);
 
 		}
+    #tutorial{
+      padding-top: 5px;
+      padding-left: 20px;
+      padding-right: 20px;
+     height: auto;
+    }
 		.io{ 
 			
 
 			width: 100%;
-			height: 37vw;
+			height: 80vh;
       padding: 5px;
 			background-color: #ffffff;
 			overflow: scroll;
@@ -237,16 +254,12 @@
                   <?php }?>
 
                 
-                  <li class="sub-menu">
+                  <li class="sub-menu" id="btn_tutorial">
                       <a href="javascript:;" >
                           <i class="fa fa-book"></i>
-                          <span>TUTORIAL</span>
+                          <span>CHEAT SHEET</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="blank.html">Blank Page</a></li>
-                          <li><a  href="login.html">Login</a></li>
-                          <li><a  href="lock_screen.html">Lock Screen</a></li>
-                      </ul>
+                     
                   </li>
               
 
@@ -261,42 +274,74 @@
       *********************************************************************************************************************************************************** -->
       <!--main content start-->
       <section id="main-content">
-          <section class="wrapper">
+          <section class="wrapper"  id="editor-io" >
           	<!-- content -->
-             <div class="row">
-			  <div class="col-md-6">
+            <div class="row">
+      			  <div class="col-md-6">
 
-			  	<div class="box">
-			  	<div class="navbar-box">
-			  		MARKDOWN
-			  		<div class="item-right">LINE : <div style="display: inline;" id="line">0</div></div>
-			  	</div><!-- navber -->
-			  		<textarea class="input io" id="input_md" ></textarea>
-			  	</div>
-			  </div>
-			  <div class="col-md-6">
-			  	<div class="box">
-			  	<div class="navbar-box">
-			  		HTML
-			  		<div class="item-right navbar-right">
-				  	   <li class="dropdown">
-				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;padding-right: 10px;">PREVIEW AS<span class="caret"></span></a>
-				          <ul class="dropdown-menu">
-				            <li id="btn-show-html"><a href="#"><i class="fa fa-code" aria-hidden="true"></i> HTML</a></li>
-				           
-				            		       
-				          </ul>
-				        </li>
-                  	</div>
+      			  	<div class="box">
+      			  	<div class="navbar-box">
+      			  		MARKDOWN
+      			  		<div class="item-right">LINE : <div style="display: inline;" id="line">0</div></div>
+      			  	</div><!-- navber -->
+      			  		<textarea class="input io" id="input_md" ></textarea>
+      			  	</div>
+      			  </div>
+      			  <div class="col-md-6">
+      			  	<div class="box">
+      			  	<div class="navbar-box">
+      			  		HTML
+      			  		<div class="item-right navbar-right">
+      				  	   <li class="dropdown">
+      				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: #ffffff;padding-right: 10px;">PREVIEW AS<span class="caret"></span></a>
+      				          <ul class="dropdown-menu">
+      				            <li id="btn-show-html"><a href="#"><i class="fa fa-code" aria-hidden="true"></i> HTML</a></li>	       
+      				          </ul>
+      				        </li>
+                        	</div>
 
-			  	</div><!-- navber -->
-			  		<div class="output io"></div>
-			  	</div>
-			  </div>
-			</div>
+      			  	</div><!-- navber -->
+      			  		<div class="output io"></div>
+      			  	</div>
+      			  </div>
+			     </div> <!-- row -->
 			<!-- content -->
+      <!-- tutorial -->
           </section>
+          <section class="wrapper" id="tutorial" style="display: none;">
+            <div class="row" > <!-- row -->
+              <div id="tutorial-content" ><!-- tutorial-content -->
+                <div class="navbar-box">
+                  <div class="item-right" id="tutorial-close"><a class="btn btn-danger" >X</a>
+                  </div>
+                  CHEAT SHEET
+                </div>
+                <!-- <div class="container-fluid"> -->
+                    <div class="col-md-2" style="padding-left: 0px;padding-right: 0px;height: initial;">
+                       <ul class="nav nav-pills nav-stacked">
+                        <li><a href="#">Menu 1</a></li>
+                        <li><a href="#">Menu 2</a></li>
+                        <li><a href="#">Menu 3</a></li>
+                        <li><a href="#">Menu 3</a></li>
+                        <li><a href="#">Menu 3</a></li>
+                        <li><a href="#">Menu 3</a></li>
+                        <li><a href="#">Menu 3</a></li>
+                        <li><a href="#">Menu 3</a></li>
+                      </ul>
+                    </div>
+                    <div class="col-md-10" style="background-color: #cee1ff;height: 87.6%" >
+                    f
+                    </div>
+                <!-- </div> -->
+            </div><!-- tutorial-content -->
+          </div><!-- row -->
+                
+
+
+          </section>
+      <!-- tutorial -->
       </section>
+
 
        <!-- Modal -->
 		  <div class="modal fade" id="myModal" role="dialog">
@@ -304,7 +349,7 @@
 		    
 		      <!-- Modal content-->
 		      <div class="modal-content" id="modal-login">
-		       
+		      
 		      </div>
 		      
 		    </div>
@@ -476,6 +521,17 @@
             hljs.initHighlightingOnLoad();
             $("#docName").children().html(document_name);
         }
+
+        // event btn tutorail
+        $("#btn_tutorial,#tutorial-close").click(function(event) {
+          let speed = '800';
+          // form editor hide or show
+          $("#editor-io").toggle(speed);
+          // page tutorial hide or show
+          $("#tutorial").toggle(speed);
+        });
+
+        // event btn tutorail
 
         //event btn singin start
     		$("#singin").click(function(event) {

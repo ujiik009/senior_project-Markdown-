@@ -6,7 +6,6 @@
 		$path_user = $path['temp_user'].$_POST['UID']."/file_temp/";
 		$path_file = $path_user.$_POST['file_name'];
 		//echo $path_user;
-
 		if(file_exists($path_file)){
 			//echo "สามารถ ลบได้"."<br>";
 			if(chmod($path_file, 0777)){
@@ -31,7 +30,7 @@
 		}else{
 			$return['status'] = false;
 			$return['message'] = "Can not delete file because File not found.";
-			//echo "ไม่สามารถลบไฟล์ได้เนื่องจากไม่ไฟล์ที่ต้องการ";
+			
 		}
 		//var_dump( );
 	}else{
