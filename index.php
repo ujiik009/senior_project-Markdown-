@@ -58,6 +58,7 @@
     #section5 {padding-top:35px;height:auto; }
     #section6 {padding-top:35px;height:auto; }
     #section7 {padding-top:35px;height:auto; }
+    #section8 {padding-top:35px;height:auto; }
 		.col-md-6{
 			padding: 0px;
 			/*background-color: #c0c2e5;*/
@@ -337,7 +338,7 @@
                         <li><a class="content-id" href="#section5">Images</a></li>
                         <li><a class="content-id" href="#section6">Code and Syntax Highlighting</a></li>
                         <li><a class="content-id" href="#section7">Horizontal Rule</a></li>
-                        <li><a class="content-id" href="#section8">Line Breaks</a></li>
+                        <li><a class="content-id" href="#section8">Text color</a></li>
                       </ul>
                     </div>
                     <div class="col-md-10 content-tutorial" style="height: 87.6%;max-height: 87.6%;overflow: scroll;" >
@@ -348,18 +349,13 @@
                           background-color: #d6e4f9;
                           overflow: scroll;
                         }
-                        code{
-                          height: inherit
-
-                        }
-
                       </style>
                       <div id="section1" class="container-fluid" >
                       <h1>Header</h1>
                       <hr class="myhorizontal">
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->                  
                       <pre class="mypre">
-                       <code>
+                        <code class="nohighlight">
 # H1
 ## H2
 ### H3
@@ -403,7 +399,7 @@ Alt-H2
                         <h1>Emphasis</h1>
                         <hr class="myhorizontal">
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
-                       <pre class="mypre"><code class ='no'>
+                       <pre class="mypre"><code class="nohighlight no">
 italics this is a *book* or _book_ .
 
 Strong bold this is a **pan** or __pan__.
@@ -425,7 +421,7 @@ Strikethrough I don't like ~~red~~ color.
                         <h1>Lists</h1>
                         <hr class="myhorizontal">
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
-                       <pre class="mypre"><code class ='no'>
+                       <pre class="mypre"><code class="nohighlight markdown">
 ### List item example
   * item1
   * item2
@@ -465,7 +461,7 @@ Strikethrough I don't like ~~red~~ color.
                         <h1>Links</h1>
                         <hr class="myhorizontal">
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
-                       <pre class="mypre"><code class ='no'>
+                       <pre class="mypre"><code class="nohighlight markdown">
 ### link example
 
 #### This is my [facebook](https://www.facebook.com/ikool009)
@@ -510,7 +506,7 @@ Strikethrough I don't like ~~red~~ color.
                         <h1>Images</h1>
                         <hr class="myhorizontal">
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
-                       <pre class="mypre"><code class ='no'>
+                       <pre class="mypre"><code class="nohighlight markdown">
 ### link image
 
 **syntax ![text](url image)**
@@ -544,20 +540,127 @@ logo facebook ![facebook](https://www.seeklogo.net/wp-content/uploads/2016/09/fa
                         <h1>Code and Syntax Highlighting</h1>
                         <hr class="myhorizontal">
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
-                       <pre class="mypre"><code class ='no'>
-italics this is a *book* or _book_ .
-
-Strong bold this is a **pan** or __pan__.
-
-Combined This is a **pen and a _pencil_**.
-
-Strikethrough I don't like ~~red~~ color.
+                       <pre class="mypre"><code class="nohighlight no">
+Inline `code` has `back-ticks around` it.
                        </code></pre>
-<!-- pre////////////////////////////////////////////////////////////////////////////- -->                      
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->          
+                        </br>
+                        </br>
+                        Inline <code>code</code> has <code>back-ticks around</code> it.
+                        </br>
+                        </br>
+                        </br>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class="nohighlight no">
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
+ 
+```python
+s = "Python syntax highlighting"
+print s
+```
+
+```html
+< div class="row">
+  < div class="col-md-6">
+    < p>column 1< /p>
+  < /div>
+  < div class="col-md-6">
+    < p>column 2< /p>
+  < /div>
+< /div>
+```
+ 
+```no
+No language indicated, so no syntax highlighting. 
+But let's throw in a <b>tag</b>.
+```
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->
+
+                        <h3>result</h3>
+
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                     
+<pre><code class ='javascript'>var s = "JavaScript syntax highlighting";
+alert(s);</code></pre> 
+<pre><code class ='python'>s = "Python syntax highlighting"
+print s</code></pre> 
+<pre><code class ='html'>&lt;div class="row">
+  &lt;div class="col-md-6">
+    &lt;p>column 1&lt;/p>
+  &lt;/div>
+  &lt;div class="col-md-6">
+    &lt;p>column 2&lt;/p>
+  &lt;/div>
+&lt;/div></code></pre>
+<pre><code >No language indicated, so no syntax highlighting. 
+But let's throw in a <b>tag</b>.</code></pre>
+                       
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->                        
+
                       </div>
                       <div id="section7" class="container-fluid">
-                        <h1>Section 5</h1>
-                        <p>Click on the different Section links in the navbar to see the smooth scrolling effect.</p>
+                        <h1>Horizontal Rule</h1>
+                         <hr class="myhorizontal">
+                        <br>
+                        
+
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class="nohighlight no">    
+Three or more...
+
+minus
+
+---           
+
+asterisk
+
+***
+
+Underscores
+___
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->  
+                      
+                         <h3>result</h3>
+
+                            Three or more...
+                            </br></br>minus
+                            <hr />           
+                            </br>asterisk
+                            <hr />
+                            </br>Underscores
+                            <hr />
+
+                      </div>
+                      <div id="section8" class="container-fluid">
+                        <h1>Text Color</h1>
+                         <hr class="myhorizontal"><br><br>
+                        <h3>Optional function customize Text color.</h3>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->    
+                       <pre class="mypre"><code class="nohighlight no">    
+{? Example1 ?}(red)
+
+
+{? Example2 ?}(green)
+
+
+{? Example3 ?}(#86a5d6)
+
+
+{? Example4 ?}( rgb(188, 33, 209) )
+
+                       </code></pre>
+<!-- pre////////////////////////////////////////////////////////////////////////////- -->  
+
+                            <h3>result</h3>
+                            <span style='color:red;'>  Example1  </span>
+                            </br></br><span style='color:green;'>  Example2  </span>
+                            </br></br><span style='color:#86a5d6;'>  Example3  </span>
+                            </br></br><span style='color: rgb(188, 33, 209) ;'>  Example4  </span>             
                       </div>
                     </div>
                 <!-- </div> -->
@@ -692,74 +795,327 @@ Strikethrough I don't like ~~red~~ color.
     <script src="lib/js/common-scripts.js"></script>
     <script src="lib/js/add_in.js"></script>
     <script type="text/javascript" src="lib/js/FileSaver.js"></script>
+<script type="text/javascript">
+// pack function
 
+// init
+var tag_html_now = "";
+var document_name = "document.md";
+var UID = "<?=$UID?>";
+
+// 1. function highlight 
+ function highlight(){
+    $('pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+    });
+}
+// _____________________________
+
+// 2 function update_html 
+function update_html(){
+    tag_html_now = regexMD_to_html($(".input").val());
+    $(".output").html(tag_html_now),highlight();
+}
+// ______________________________
+
+// 3 function save_file this is function save file to server
+function save_file(UID,document_name){
+  var content = $("#input_md").val();
+  $.post('Service/service_save_file.php', 
+    {
+      content: content,
+      UID : UID,
+      file_name:document_name
+    }, 
+    function() {
+    /*optional stuff to do after success */
+    }).done(function(data){
+        var json_res = jQuery.parseJSON(data);
+        if(json_res.status == true){
+            $.simplyToast(json_res.message, 'success');
+            show_doc_list(UID);
+
+        }else{
+            $.simplyToast(json_res.message, 'danger');
+        }
+    });
+}
+// ______________________________
+
+// 4 function system init 
+ function setup(document_name){
+      hljs.initHighlightingOnLoad();
+      $("#docName").children().html(document_name);
+      $(".input").numberedtextarea().enableSmartTab();
+      highlight();
+}
+// ______________________________
+
+//5 function show doc list
+ function show_doc_list(UID){
+        $.post('Service/show_file.php', 
+          {UID: UID}, 
+          function() {
+          /*optional stuff to do after success */
+          }).done(function(data){
+            
+            var jsondata = jQuery.parseJSON(data);
+            if(jsondata.status == true){
+              $("#show_doc").empty();
+              $.each(jsondata.data,function(index, el) {
+                let name_file = '<li class="item-doc context-menu-one"><a  href="#" ><i class="fa fa-file-text-o" aria-hidden="true"></i>'+el+'</a></li>';
+                $("#show_doc").append(name_file);
+              });
+
+            }else{
+              alert(data);
+            }
+            
+          },function(){
+              //event load content from server
+               $(".item-doc").click(function(event) {
+                  let doc_name = $(this).text();
+                  $.post('Service/load_content.php', 
+                    {
+                      UID: UID,
+                      doc_name: doc_name
+                    }, 
+                    function() {
+                    /*optional stuff to do after success */
+                  }).done(function(data){
+                    try{
+                        let json_res = jQuery.parseJSON(data);
+                        if(json_res.status == true){
+                          $.simplyToast(json_res.message, 'success');
+                          $("#input_md").val(json_res.data);
+                          doc_update(doc_name);
+                          update_html();
+                        }else{
+                           $.simplyToast(json_res.message, 'danger');
+                        }
+                    }catch(e)
+                    {
+                        $.simplyToast("Could not open file.", 'danger');
+                       return;
+                    }
+                  });
+                
+               });
+               //event load content from server
+
+          });
+
+ }
+// ______________________________
+
+// 6 function doc update name
+function doc_update(NewDocName){
+      document_name = NewDocName;
+      $("#docName").children().html(document_name);
+}
+// ______________________________
+
+//7 function add type file
+function addTypeFile(fileName){
+    return fileName+".md";
+}
+//_______________________________
+
+ //8 function delete file from server
+ function delete_file(UID,file_name){
+    $.post('Service/delete_file.php', 
+      {
+        UID: UID,
+        file_name:file_name
+
+      }, function() {
+      /*optional stuff to do after success */
+    }).done(function(data){
+      //alert(data);
+      let json_res = jQuery.parseJSON(data);
+
+      if(json_res.status){
+        $.simplyToast(json_res.message, 'success');
+        show_doc_list(UID);
+        //return true;
+      }else{
+
+        $.simplyToast(json_res.message, 'danger');
+         //return false;
+      }
+    });
+ }
+
+ // __________________________
+
+ //9 rename Doc
+
+function  Rename_doc(old_name,last_name){
+      $.post('Service/service_rename.php', 
+        {
+          UID: UID,
+          old_file:old_name,
+          new_file:last_name
+        },
+         function() {
+        /*optional stuff to do after success */
+         }
+      ).done(function(data){
+        try{
+          let json_res_rename = jQuery.parseJSON(data);
+          if(json_res_rename){
+             $("#rename-modal").modal('hide');
+              show_doc_list(UID);
+          }else{
+            $.simplyToast(json_res_rename.message, 'danger');
+          }
+        }catch(e){
+          alert("Renae false");
+        }
+      });
+}
+//__________________________________
+
+//10 function new Document
+function NewDoc(){
+  let name_doc = "NewDocument.md";
+  //alert("function new doc");
+    $.post('Service/add_new_file.php', 
+      {
+        UID: UID,
+        NewDoc:name_doc
+      }, 
+      function() {
+      }
+    ).done(function(data){
+      try{
+        let json = jQuery.parseJSON(data);
+        if(json.status){
+          show_doc_list(UID);
+          $.simplyToast("Create file success", 'success');
+        }else{
+           $.simplyToast(json.message, 'danger');
+        }
+      }catch(e){
+        $.simplyToast("parseJSON error", 'danger');
+      }
+    });
+}
+//_____________________________________
+
+//11 function click right 
+
+function clickRight(){
+
+    $.contextMenu({
+        selector: '.context-menu-one', 
+        callback: function(key, options) {
+          
+            let file_name =  $(this).text();
+            if(key == "delete"){
+             
+               var conf = confirm("Are you sure to delete the file "+file_name+"?");
+
+              if(conf){    
+                delete_file(UID,file_name);
+              }else{
+                return;
+              }
+            }else if(key == "rename" ){
+              console.log($(this));
+
+              $("#rename-modal").modal('toggle');
+              $("#name-doc-model").text("Document name : "+ file_name);
+              $("#content_model_rename").empty();
+              $("#content_model_rename").append(' <input type="text" class="form-control" id="input-rename" />');
+              $("#input-rename").empty().val(file_name);
+              $(".conf").click(function() {
+                let last_name = $("#input-rename").val();
+                Rename_doc(file_name,last_name);
+              });
+
+
+
+            }else{
+              alert("key error");
+            }
+        },
+        items: {
+            "rename": {name: "Rename", icon: "edit"},
+            "delete": {name: "Delete", icon: "delete"}
+
+           
+        }
+    });
+
+     $.contextMenu({
+        selector: '.menu-doc', 
+        callback: function(key, options) {
+            //var m = "clicked: " + key;
+            //alert(m+" "+$(this).text());
+            let file_name =  $(this).text();
+            if(key == "New"){
+              NewDoc();
+            }else{
+              alert("key error");
+            }
+        },
+        items: {
+            
+            "New": {name: "New Document", icon: "add"}
+           
+        }
+    });
+}
+//____________________________
+
+//12 function singout
+function singout(){
+  $.get('Service/logout.php', function() {}).done(function(data){
+      try{
+          let json_res = jQuery.parseJSON(data);
+          if(json_res.status == true){
+              location.reload();
+          }
+      }catch(e){
+        $.simplyToast(e, 'danger');
+      }
+  });
+  
+}
+//___________________________
+</script>
     
 <script type="text/javascript">
 $(document).ready(function() {
-         var tag_html_now = "";
-         var document_name = "document.md";
-         var UID = "<?=$UID?>";
+         
          
          //var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
    
-         // function update md
+         // event show source code html
          $("#btn-show-html").click(function(event) {
            $("#textarea-modal-html").val(tag_html_now);
            $("#show-html-modal").modal("toggle");
          });
-
-         function update_html(){
-          tag_html_now = regexMD_to_html($(".input").val());
-          $(".output").html(tag_html_now),highlight();
-         }
-         function save_file(){
-          var content = $("#input_md").val();
-          $.post('Service/service_save_file.php', 
-            {
-              content: content,
-              UID : UID,
-              file_name:document_name
-            }, 
-            function() {
-            /*optional stuff to do after success */
-            }).done(function(data){
-                var json_res = jQuery.parseJSON(data);
-                if(json_res.status == true){
-                    $.simplyToast(json_res.message, 'success');
-                    show_doc_list(UID);
-
-                }else{
-                    $.simplyToast(json_res.message, 'danger');
-                }
-            });
-         }
-
-         // function update md 
+         // event show source code html
+        
+       
 
          $(".input").bind('input', function(event) {
            /* Act on the event */
           update_html();
          });
          
-    		$(".input").numberedtextarea().enableSmartTab();
-    		function addTypeFile(fileName){
-            return fileName+".md";
-        }
-        function setup(){
-            hljs.initHighlightingOnLoad();
-            $("#docName").children().html(document_name);
-            $('pre code').each(function(i, block) {
-                hljs.highlightBlock(block);
-            });
-        }
+    		
+    		
+       
 
         // event btn tutorail
         $("#btn_tutorial,#tutorial-close").click(function(event) {
           let speed = '800';
           // form editor hide or show
-          $("#editor-io").toggle(speed);
-          // page tutorial hide or show
-          $("#tutorial").toggle(speed);
+          $("#editor-io,#tutorial").toggle(speed);
+        
         });
 
         // event btn tutorail
@@ -812,7 +1168,7 @@ $(document).ready(function() {
 
        //event save file to server
        $("#my_save").click(function(event) {
-          save_file();
+          save_file(UID,document_name);
        });
        //event save file to server
 
@@ -822,99 +1178,7 @@ $(document).ready(function() {
        });
        //event cilck import
 
-       // function show doc list
-       function show_doc_list(UID){
-        $.post('Service/show_file.php', 
-          {UID: UID}, 
-          function() {
-          /*optional stuff to do after success */
-          }).done(function(data){
-            
-            var jsondata = jQuery.parseJSON(data);
-            if(jsondata.status == true){
-              $("#show_doc").empty();
-              $.each(jsondata.data,function(index, el) {
-                let name_file = '<li class="item-doc context-menu-one"><a  href="#" ><i class="fa fa-file-text-o" aria-hidden="true"></i>'+el+'</a></li>';
-                $("#show_doc").append(name_file);
-              });
 
-            }else{
-              alert(data);
-            }
-            
-          },function(){
-              //event load content from server
-               $(".item-doc").click(function(event) {
-                  let doc_name = $(this).text();
-                  $.post('Service/load_content.php', 
-                    {
-                      UID: UID,
-                      doc_name: doc_name
-                    }, 
-                    function() {
-                    /*optional stuff to do after success */
-                  }).done(function(data){
-                    try{
-                        let json_res = jQuery.parseJSON(data);
-                        if(json_res.status == true){
-                          $.simplyToast(json_res.message, 'success');
-                          $("#input_md").val(json_res.data);
-                          doc_update(doc_name);
-                          update_html();
-                        }else{
-                           $.simplyToast(json_res.message, 'danger');
-                        }
-                    }catch(e)
-                    {
-                        $.simplyToast("Could not open file.", 'danger');
-                       return;
-                    }
-                    
-                    
-                  });
-                //alert($(this).text());
-               });
-               //event load content from server
-
-          });
-
-       }
-       // function show doc list
-
-     
-       // function update doc name
-       function doc_update(NewDocName){
-          document_name = NewDocName;
-          $("#docName").children().html(document_name);
-       }
-       // function update doc name
-
-       // function delete file from server
-       function delete_file(UID,file_name){
-          $.post('Service/delete_file.php', 
-            {
-              UID: UID,
-              file_name:file_name
-
-            }, function() {
-            /*optional stuff to do after success */
-          }).done(function(data){
-            //alert(data);
-            let json_res = jQuery.parseJSON(data);
-
-            if(json_res.status){
-              $.simplyToast(json_res.message, 'success');
-              show_doc_list(UID);
-              //return true;
-            }else{
-
-              $.simplyToast(json_res.message, 'danger');
-               //return false;
-            }
-          });
-       }
-
-       // function delete file from server
 
        // event ckick export file
        $(".export-file").click(function(event) {
@@ -956,130 +1220,10 @@ $(document).ready(function() {
       }
       //function ajax to render service php
 
+
       // function click right 
-      function clickRight(){
-
-          $.contextMenu({
-              selector: '.context-menu-one', 
-              callback: function(key, options) {
-                
-                  let file_name =  $(this).text();
-                  if(key == "delete"){
-                   
-                     var conf = confirm("Are you sure to delete the file "+file_name+"?");
-
-                    if(conf){    
-                      delete_file(UID,file_name);
-                    }else{
-                      return;
-                    }
-                  }else if(key == "rename" ){
-                    console.log($(this));
-
-                    $("#rename-modal").modal('toggle');
-                    $("#name-doc-model").text("Document name : "+ file_name);
-                    $("#content_model_rename").empty();
-                    $("#content_model_rename").append(' <input type="text" class="form-control" id="input-rename" />');
-                    $("#input-rename").empty().val(file_name);
-                    $(".conf").click(function() {
-                      let last_name = $("#input-rename").val();
-                      Rename_doc(file_name,last_name);
-                    });
 
 
-
-                  }else{
-                    alert("key error");
-                  }
-              },
-              items: {
-                  "rename": {name: "Rename", icon: "edit"},
-                  "delete": {name: "Delete", icon: "delete"}
-
-                 
-              }
-          });
-
-           $.contextMenu({
-              selector: '.menu-doc', 
-              callback: function(key, options) {
-                  //var m = "clicked: " + key;
-                  //alert(m+" "+$(this).text());
-                  let file_name =  $(this).text();
-                  if(key == "New"){
-                    NewDoc();
-                  }else{
-                    alert("key error");
-                  }
-              },
-              items: {
-                  
-                  "New": {name: "New Document", icon: "add"}
-                 
-              }
-          });
-      }
-     // function click right 
-
-     // function new Document
-      function NewDoc(){
-        let name_doc = "NewDocument.md";
-        //alert("function new doc");
-          $.post('Service/add_new_file.php', 
-            {
-              UID: UID,
-              NewDoc:name_doc
-            }, 
-            function() {
-           
-            }
-          ).done(function(data){
-            try{
-              let json = jQuery.parseJSON(data);
-              if(json.status){
-                show_doc_list(UID);
-                $.simplyToast("Create file success", 'success');
-              }else{
-                 $.simplyToast(json.message, 'danger');
-              }
-            }catch(e){
-              $.simplyToast("parseJSON error", 'danger');
-            }
-            
-            //alert(data);
-          
-
-          });
-      }
-     // function new Document
-
-     // function rename
-     function  Rename_doc(old_name,last_name){
-        $.post('Service/service_rename.php', 
-          {
-            UID: UID,
-            old_file:old_name,
-            new_file:last_name
-          },
-           function() {
-          /*optional stuff to do after success */
-           }
-        ).done(function(data){
-          try{
-            let json_res_rename = jQuery.parseJSON(data);
-            if(json_res_rename){
-               $("#rename-modal").modal('hide');
-                show_doc_list(UID);
-            }else{
-              $.simplyToast(json_res_rename.message, 'danger');
-            }
-          }catch(e){
-            alert("Renae false");
-          }
-        });
-     }
-
-     // function rename
 
       
       //shot key command
@@ -1088,7 +1232,7 @@ $(document).ready(function() {
               switch (String.fromCharCode(event.which).toLowerCase()) {
               case 's':
                   event.preventDefault();
-                  save_file();
+                  save_file(UID,document_name);
                   break;
               case 'f':
                   event.preventDefault();
@@ -1109,21 +1253,6 @@ $(document).ready(function() {
       });
       // event sing out 
 
-      // function singout
-      function singout(){
-        $.get('Service/logout.php', function() {}).done(function(data){
-            try{
-                let json_res = jQuery.parseJSON(data);
-                if(json_res.status == true){
-                    location.reload();
-                }
-            }catch(e){
-              $.simplyToast(e, 'danger');
-            }
-        });
-        
-      }
-      // function singout
 
 
       ///////////////////////////////////////
@@ -1158,7 +1287,7 @@ $(document).ready(function() {
     		
 
         //init function
-        setup();
+        setup(document_name);
         if(UID!=""){
           // islogin
           show_doc_list(UID);

@@ -1,6 +1,6 @@
  Vue Link Youtube
 ===
-![logo](https://vuejs.org/images/logo.png)(100)(100)
+![logo](https://vuejs.org/images/logo.png)(100px)(100px)
 
 ### 1 intro
 	* [link](https://www.youtube.com/watch?v=czMl1UKox34&feature=youtu.be)
