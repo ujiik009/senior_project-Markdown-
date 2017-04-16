@@ -1207,14 +1207,25 @@ $(document).ready(function() {
         $.post('Service/service_render_pdf.php', 
           {
             UID       : UID,
-            html_tag  : tag_html_now
+            html_tag  : tag_html_now,
+            file_name : document_name
           }, 
           function() {
           /*optional stuff to do after success */
           }
         ).done(function(data){
-          alert(data);
-          console.log(data);
+          // alert(data);
+          // console.log(data);
+          try{
+            let json = jQuery.parseJSON(data);
+            if(json.status == true){
+                window.open("http://"+json.url_download);
+            }else{
+              alert(json.message);
+            }
+          }catch(e){
+
+          }
         });
         //alert(tag_html_now);
       }

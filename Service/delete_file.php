@@ -10,8 +10,8 @@
 			//echo "สามารถ ลบได้"."<br>";
 			if(chmod($path_file, 0777)){
 				if(unlink($path_file)){
-				$return['status'] = true;
-				$return['message'] = "Delete file {$_POST['file_name']} successfully";
+					$return['status'] = true;
+					$return['message'] = "Delete file {$_POST['file_name']} successfully";
 				}else{
 					$return['status'] = false;
 					$return['message'] = "Deleted file failed.";
