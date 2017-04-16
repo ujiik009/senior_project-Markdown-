@@ -1,3 +1,3 @@
-# senior_project Markdown Editor 84%
+# senior_project Markdown Editor 96%
 
 ---
