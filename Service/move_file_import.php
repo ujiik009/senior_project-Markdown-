@@ -1,23 +1,30 @@
 <?php 
+//header('Content-Type: application/json');
 require '../config_system/config_path.php';
 $ds  = DIRECTORY_SEPARATOR;
 $dir = $path['temp_user'];   
 $return =array();
 
-$UID = $_GET['accessToken'];
-$temp_user = $dir.$UID."/file_temp/";
+ $UID = $_POST['accessToken'];
+ $temp_user = $dir.$UID."/file_temp/";
 
-if(isset($_FILES["file_import"])){
-	if(move_uploaded_file($_FILES["file_import"]["tmp_name"],$temp_user.$_FILES["file_import"]["name"])){
-		
-		header("location:../index.php");
-	}else{
-
-		echo "ย้านไฟล์ไม่สำเร็จ";
-	}
-
+if(isset($_FILES["file_import"]) && $_FILES["file_import"]["size"] > 0 ){
+	 if(move_uploaded_file($_FILES["file_import"]["tmp_name"],$temp_user.$_FILES["file_import"]["name"])){
+		$return["status"] = true;
+		$return["message"] = "Upload file {$_FILES["file_import"]["name"]} Successful!!";
+	 	
+	 }else{
+	 	$return["status"] = false;
+		$return["message"] = "Upload file {$_FILES["file_import"]["name"]} Unsuccessful!!";
+	 }
 }else{
-	echo "ไม่มีไฟล์";
+	$return["status"] = false;
+	$return["message"] = "File not found to import.";
 }
+
+// var_dump($_POST);
+echo json_encode($return);
+
+
 
 ?>

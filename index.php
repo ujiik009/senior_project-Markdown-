@@ -188,9 +188,9 @@
                 <ul class="nav top-menu"> 
                 <!-- navber start -->
 	                 <!-- icon Editor list -->
-				      <li><a href="#" class="item-editor"><i class="fa fa-bold" aria-hidden="true"></i></a></li>
+				    <!--   <li><a href="#" class="item-editor"><i class="fa fa-bold" aria-hidden="true"></i></a></li>
 				      <li style="text-align: center;"><a href="#" class="item-editor"><i class="fa fa-italic" aria-hidden="true"></i></a></li>
-				      <li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+				      <li><a href="#"><i class="fa fa-link" aria-hidden="true"></i></a></li> -->
 				      <!-- icon Editor list -->
                 <!-- navber stop -->
                 </ul>
@@ -701,14 +701,15 @@ ___
                             <p class="no-margin">You can upload only 1 markdown file and text file  at a time!</p>
                           </div>
                           <div class="modal-body col-md-12">
-
-                            <form  action="Service/move_file_import.php?accessToken=<?=$UID ?>" method="post" enctype="multipart/form-data">
+                              
+                            <form id="file_doc"  method="post" enctype="multipart/form-data">
+                           <!--  action="Service/move_file_import.php?accessToken=<?=$UID ?>" -->
                             <div class="form-group">
                               <label >import file .text or .md</label>
                               <input style="width:100%;" type="file" class="form-control-file" accept="text/plain,.md" name="file_import" >
-                              
+                              <input type="hidden" name="accessToken" id="accessToken"/>
                             </div>
-                             <button class="btn btn-info" type="submit"><i class="fa fa-cloud-upload" aria-hidden="true"></i> IMPORT</button>
+                             <a id="btn_upload" class="btn btn-info" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> IMPORT</a>
                             </form>
                            </div>
                             <div class="modal-footer">
@@ -795,6 +796,7 @@ ___
     <script src="lib/js/common-scripts.js"></script>
     <script src="lib/js/add_in.js"></script>
     <script type="text/javascript" src="lib/js/FileSaver.js"></script>
+    <script type="text/javascript" src="lib/js/jquery.fileDownload.js"></script>
 <script type="text/javascript">
 // pack function
 
@@ -1084,7 +1086,73 @@ function singout(){
   
 }
 //___________________________
+
+//13 function upload file
+function upload_file(UID){
+  $("#accessToken").val(UID);
+  var formData = new FormData($("form#file_doc")[0]);
+
+    $.ajax({
+        url: 'Service/move_file_import.php',
+        type: 'POST',
+        data: formData,
+        async: false,
+        success: function (data) {
+          try{
+              let json_res = jQuery.parseJSON(data);
+              if(json_res.status == true){
+                 
+                  $.simplyToast(json_res.message, 'success');
+                  $("#uploader").modal('toggle');
+                   show_doc_list(UID);
+              }else{
+                   $.simplyToast(json_res.message, 'danger');
+              }
+          }catch(e){
+              $.simplyToast(e, 'danger');
+          }
+      },
+      cache: false,
+      contentType: false,
+      processData: false
+  });
+  
+}
+//___________________________________________________
+
+//13 function ajax to render service php
+function ajax_renderPDF_php(UID){
+  $.post('Service/service_render_pdf.php', 
+    {
+      UID       : UID,
+      html_tag  : tag_html_now,
+      file_name : document_name
+    }, 
+    function() {
+    /*optional stuff to do after success */
+    }
+  ).done(function(data){
+    // alert(data);
+    // console.log(data);
+    try{
+      let json = jQuery.parseJSON(data);
+      if(json.status == true){
+
+          window.open("http://"+json.url_download);
+           
+      }else{
+      
+         $.simplyToast(json.message, 'danger');
+      }
+    }catch(e){
+        $.simplyToast(e, 'danger');
+    }
+  });
+  //alert(tag_html_now);
+}
+//________________________________      
 </script>
+
     
 <script type="text/javascript">
 $(document).ready(function() {
@@ -1102,10 +1170,17 @@ $(document).ready(function() {
        
 
          $(".input").bind('input', function(event) {
-           /* Act on the event */
+           
           update_html();
          });
          
+         // Event upload file
+         $("#btn_upload").click(function(event) {
+            upload_file(UID);
+         });
+
+
+         // Event upload file
     		
     		
        
@@ -1202,41 +1277,7 @@ $(document).ready(function() {
         
        });
        // event ckick export file
-      //function ajax to render service php
-      function ajax_renderPDF_php(UID){
-        $.post('Service/service_render_pdf.php', 
-          {
-            UID       : UID,
-            html_tag  : tag_html_now,
-            file_name : document_name
-          }, 
-          function() {
-          /*optional stuff to do after success */
-          }
-        ).done(function(data){
-          // alert(data);
-          // console.log(data);
-          try{
-            let json = jQuery.parseJSON(data);
-            if(json.status == true){
-                window.open("http://"+json.url_download);
-            }else{
-              alert(json.message);
-            }
-          }catch(e){
-
-          }
-        });
-        //alert(tag_html_now);
-      }
-      //function ajax to render service php
-
-
-      // function click right 
-
-
-
-      
+           
       //shot key command
       $(window).bind('keydown', function(event) {
           if (event.ctrlKey || event.metaKey) {
