@@ -1129,11 +1129,10 @@ function ajax_renderPDF_php(UID){
       file_name : document_name
     }, 
     function() {
-    /*optional stuff to do after success */
+ 
     }
   ).done(function(data){
-    // alert(data);
-    // console.log(data);
+  
     try{
       let json = jQuery.parseJSON(data);
       if(json.status == true){
@@ -1148,7 +1147,7 @@ function ajax_renderPDF_php(UID){
         $.simplyToast(e, 'danger');
     }
   });
-  //alert(tag_html_now);
+  
 }
 //________________________________      
 </script>
