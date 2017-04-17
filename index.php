@@ -931,19 +931,19 @@ function addTypeFile(fileName){
         file_name:file_name
 
       }, function() {
-      /*optional stuff to do after success */
+    
     }).done(function(data){
-      //alert(data);
+     
       let json_res = jQuery.parseJSON(data);
 
       if(json_res.status){
         $.simplyToast(json_res.message, 'success');
         show_doc_list(UID);
-        //return true;
+       
       }else{
 
         $.simplyToast(json_res.message, 'danger');
-         //return false;
+        
       }
     });
  }

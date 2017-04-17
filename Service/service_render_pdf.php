@@ -3,7 +3,7 @@ include '../lib/php/mpdf/mpdf.php';
 require '../config_system/config_path.php';
 
 
-//var_dump($path);
+
  $return = array();
  error_reporting(1);
  if(isset($_POST['html_tag']) && isset($_POST['UID']) && isset($_POST['file_name'])){
@@ -14,7 +14,7 @@ require '../config_system/config_path.php';
 	$url_pdf = $base_url."temp_user/{$_POST['UID']}/";
 	$number_ran = rand(100, 200);
 	if(file_exists($temp_user)){
-		//echo "{$temp_user}{$file_name}.pdf";
+		
 		if(chdir($temp_user) ){
 			chmod($temp_user, 0777);
 			$array_pdf = glob("*.pdf");
@@ -23,7 +23,7 @@ require '../config_system/config_path.php';
 				chmod($name_pdf, 0755);
 				unlink($name_pdf);
 			}
-			//echo $url_pdf;
+			
 			$mpdf=new mPDF();
 			$mpdf->WriteHTML($html);
 			$mpdf->SetDisplayMode('fullpage');
@@ -40,13 +40,13 @@ require '../config_system/config_path.php';
 			}
 
 
-			// var_dump( glob("*.pdf"));
+			
 		}else{
 			$return["status"] = false;
 			$return['message'] = "chmod error";
 		}
 		
-		//var_dump($_POST);
+		
 	}else{
 		$return['status'] = false;
 		$return['message'] = "Not found path";

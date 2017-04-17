@@ -1,5 +1,5 @@
 <?php 
-//header('Content-Type: application/json');
+
 require '../config_system/config_path.php';
 $ds  = DIRECTORY_SEPARATOR;
 $dir = $path['temp_user'];   
@@ -22,7 +22,7 @@ if(isset($_FILES["file_import"]) && $_FILES["file_import"]["size"] > 0 ){
 	$return["message"] = "File not found to import.";
 }
 
-// var_dump($_POST);
+
 echo json_encode($return);
 
 
