@@ -9,6 +9,7 @@ s = "Python syntax highlighting"
 print s
 ```
 
+# html
 ```html
 < div class="row">
   < div class="col-md-6">
@@ -18,9 +19,4 @@ print s
     < p>column 2< /p>
   < /div>
 < /div>
-```
- 
-```no
-No language indicated, so no syntax highlighting. 
-But let's throw in a tag.
 ```
