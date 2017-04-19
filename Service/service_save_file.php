@@ -7,14 +7,23 @@
 			//var_dump( file_put_contents($file_name, $_POST['content']));
 			//echo "SAVE OK".$_POST['content']." ".$_POST['UID'] ." ".$_POST['file_name'];
 			//chmod($file_name, 777);
-			if(file_put_contents($file_name, $_POST['content']) !== false){
-				$return["status"] = true;
-				$return["message"] = "Save file successfully";
+			$_POST['UID'] = ($_POST['UID'] == '') ? "null" : $_POST['UID'];
+
+			$temp_user = $path['temp_user'].$_POST['UID'];
+			if(file_exists($temp_user)){
+				if(file_put_contents($file_name, $_POST['content']) !== false){
+					$return["status"] = true;
+					$return["message"] = "Save file successfully";
 				
+				}else{
+					$return["status"] = false;
+					$return["message"] = "File save failed.ice".$temp_user;
+				}
 			}else{
 				$return["status"] = false;
-				$return["message"] = "File save failed.";
+				$return["message"] = "user not found.";
 			}
+			
 	}
 	
 	echo json_encode($return);

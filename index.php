@@ -1069,7 +1069,7 @@ function addTypeFile(fileName){
 
  // __________________________
 
- //9 rename Doc
+ //9 function rename Doc
 
 function  Rename_doc(old_name,last_name){
       $.post('Service/service_rename.php', 
@@ -1154,9 +1154,6 @@ function clickRight(){
                 let last_name = $("#input-rename").val();
                 Rename_doc(file_name,last_name);
               });
-
-
-
             }else{
               alert("key error");
             }
@@ -1164,16 +1161,13 @@ function clickRight(){
         items: {
             "rename": {name: "Rename", icon: "edit"},
             "delete": {name: "Delete", icon: "delete"}
-
-           
         }
     });
 
      $.contextMenu({
         selector: '.menu-doc', 
         callback: function(key, options) {
-            //var m = "clicked: " + key;
-            //alert(m+" "+$(this).text());
+          
             let file_name =  $(this).text();
             if(key == "New"){
               NewDoc();
@@ -1285,7 +1279,7 @@ function load_overlay(){
 $(document).ready(function() {
          
          
-         //var template = "<html><meta charset='utf-8'><head></head><body><??content??></body></html>";
+        
    
          // event show source code html
          $("#btn-show-html").click(function(event) {
@@ -1295,23 +1289,18 @@ $(document).ready(function() {
          // event show source code html
         
        
-
-         $(".input").bind('input', function(event) {
-           
+         //binding event key up textarea 
+         $(".input").bind('input', function(event) {           
           update_html();
          });
-         
+         //binding event key up textarea 
+
          // Event upload file
          $("#btn_upload").click(function(event) {
             upload_file(UID);
          });
-
-
          // Event upload file
     		
-    		
-       
-
         // event btn tutorail
         $("#btn_tutorial,#tutorial-close").click(function(event) {
           let speed = '800';
@@ -1319,32 +1308,26 @@ $(document).ready(function() {
           $("#editor-io,#tutorial").toggle(speed);
         
         });
-
         // event btn tutorail
 
         //event btn singin start
     		$("#singin").click(function(event) {
     			$("#modal-login").empty();
-    			$.get('ajax/login.html', function() {
-    				
+    			$.get('ajax/login.html', function() {  				
     			}).done(function(data){
-    				$("#modal-login").append(data);
-    				
+    				$("#modal-login").append(data);  				
     			},function(){
     				$("#myModal").modal('show');
     				$("#btn-singIn").click(function(event) {
-    					$.post('Service/login.php', {user: $("#User").val(),password:$("#password").val()}, function() {
-    						
+    					$.post('Service/login.php', {user: $("#User").val(),password:$("#password").val()}, function() {    					
     					}).done(function(data){
                 let json_res = jQuery.parseJSON(data);
                 if(json_res.status){
                      $.simplyToast("Wellcome ", 'success');
-
                      setTimeout(function(){ location.reload(); }, 1000);
                 }else{
                       $.simplyToast(json_res.message, 'danger');
                 }
-    						//alert(data);
     					});
     				});
     			});
@@ -1380,8 +1363,6 @@ $(document).ready(function() {
        });
        //event cilck import
 
-
-
        // event ckick export file
        $(".export-file").click(function(event) {
            let type_file = $(this).attr("type-file");
@@ -1390,18 +1371,18 @@ $(document).ready(function() {
            if(type_file == "md"){
               let text_md = $("#input_md").val();
               var file = new Blob([text_md], {type: "text/plain;charset=utf-8"}); //IE<10
-              saveAs(file, Doc_name_save[0]+".md"); 
+              saveAs(file, Doc_name_save[0]+".md");
+
            }else if(type_file == "html"){
-              
               var file = new Blob([tag_html_now], {type: "text/plain;charset=utf-8"}); //IE<10
               saveAs(file, Doc_name_save[0]+".html"); 
-               //alert("Export file html");
+              
            }else if(type_file == "pdf"){
                 ajax_renderPDF_php(UID);
-                //alert("Export file pdf");
            }else{
              alert(type_file);
            }
+           file = null;
         
        });
        // event ckick export file
@@ -1429,11 +1410,14 @@ $(document).ready(function() {
 
       // event sing out 
       $("#singout").click(function(event) {
-        singout();
+        let conf = confirm("Are you sure");
+        if(conf){
+            singout();
+        }else{
+            return false;
+        }
       });
       // event sing out 
-
-
 
       ///////////////////////////////////////
          // Add scrollspy to <body>
