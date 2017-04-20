@@ -11,6 +11,7 @@ $return =array();
 if(isset($_FILES["file_import"]) && $_FILES["file_import"]["size"] > 0 ){
 	 if(move_uploaded_file($_FILES["file_import"]["tmp_name"],$temp_user.$_FILES["file_import"]["name"])){
 		$return["status"] = true;
+		$return["fileName"] = $_FILES["file_import"]["name"];
 		$return["message"] = "Upload file {$_FILES["file_import"]["name"]} Successful!!";
 	 	
 	 }else{

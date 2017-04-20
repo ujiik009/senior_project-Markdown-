@@ -19,9 +19,9 @@
         }else{
           return false;
         }
-
-      }
         
+      }
+    
       $status_login = check_login($status_cookie);
     
     ?>
@@ -996,30 +996,7 @@ function save_file(UID,document_name){
               //event load content from server
                $(".item-doc").click(function(event) {
                   let doc_name = $(this).text();
-                  $.post('Service/load_content.php', 
-                    {
-                      UID: UID,
-                      doc_name: doc_name
-                    }, 
-                    function() {
-                    /*optional stuff to do after success */
-                  }).done(function(data){
-                    try{
-                        let json_res = jQuery.parseJSON(data);
-                        if(json_res.status == true){
-                          $.simplyToast(json_res.message, 'success');
-                          $("#input_md").val(json_res.data);
-                          doc_update(doc_name);
-                          update_html();
-                        }else{
-                           $.simplyToast(json_res.message, 'danger');
-                        }
-                    }catch(e)
-                    {
-                        $.simplyToast("Could not open file.", 'danger');
-                       return;
-                    }
-                  });
+                  load_content(UID,doc_name);
                 
                });
                //event load content from server
@@ -1214,10 +1191,12 @@ function upload_file(UID){
           try{
               let json_res = jQuery.parseJSON(data);
               if(json_res.status == true){
-                   load_overlay();
+                   
                   $.simplyToast(json_res.message, 'success');
                   $("#uploader").modal('toggle');
                    show_doc_list(UID);
+                   load_content(UID,json_res.fileName);
+                   load_overlay();
               }else{
                      load_overlay();
                    $.simplyToast(json_res.message, 'danger');
@@ -1235,7 +1214,7 @@ function upload_file(UID){
 }
 //___________________________________________________
 
-//13 function ajax to render service php
+//14 function ajax to render service php
 function ajax_renderPDF_php(UID){
   load_overlay();
   $.post('Service/service_render_pdf.php', 
@@ -1262,15 +1241,45 @@ function ajax_renderPDF_php(UID){
     }catch(e){
         load_overlay();
         $.simplyToast(e, 'danger');
+        console.log(data);
     }
   });
   
 }
 //________________________________    
 
-//14 function load ovarlay
+//15 function load ovarlay
 function load_overlay(){
   $(".loading").toggle();
+}
+//________________________________
+
+//16 function load content 
+function load_content(UID,doc_name){
+$.post('Service/load_content.php', 
+        {
+          UID: UID,
+          doc_name: doc_name
+        }, 
+        function() {
+        /*optional stuff to do after success */
+      }).done(function(data){
+        try{
+            let json_res = jQuery.parseJSON(data);
+            if(json_res.status == true){
+              $.simplyToast(json_res.message, 'success');
+              $("#input_md").val(json_res.data);
+              doc_update(doc_name);
+              update_html();
+            }else{
+               $.simplyToast(json_res.message, 'danger');
+            }
+        }catch(e)
+        {
+            $.simplyToast("Could not open file.", 'danger');
+           return;
+        }
+      });
 }
 </script>
 
