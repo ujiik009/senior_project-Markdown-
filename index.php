@@ -1397,7 +1397,7 @@ $(document).ready(function() {
                   break;
               case 'f':
                   event.preventDefault();
-                  alert('ctrl-f');
+                  window.open("http://localhost/list-scope-project-by-vue/")
                   break;
               case 'g':
                   event.preventDefault();
