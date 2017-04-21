@@ -299,7 +299,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>Mark Down</b></a>
+            <a  class="logo"><b>Mark Down</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -824,7 +824,7 @@ ___
                            <!--  action="Service/move_file_import.php?accessToken=<?=$UID ?>" -->
                             <div class="form-group">
                               <label >import file .text or .md</label>
-                              <input style="width:100%;" type="file" class="form-control-file" accept="text/plain,.md" name="file_import" >
+                              <input style="width:100%;" id="input-file" type="file" class="form-control-file" accept="text/plain,.md" name="file_import" >
                               <input type="hidden" name="accessToken" id="accessToken"/>
                             </div>
                              <a id="btn_upload" class="btn btn-info" ><i class="fa fa-cloud-upload" aria-hidden="true"></i> IMPORT</a>
@@ -923,6 +923,7 @@ ___
 var tag_html_now = "";
 var document_name = "document.md";
 var UID = "<?=$UID?>";
+var array_file_list = [];
 
 // 1. function highlight 
  function highlight(){
@@ -942,12 +943,20 @@ function update_html(){
 // 3 function save_file this is function save file to server
 function save_file(UID,document_name){
   var content = $("#input_md").val();
-  $.post('Service/service_save_file.php', 
-    {
-      content: content,
-      UID : UID,
-      file_name:document_name
-    }, 
+  let conf = false;
+  if(Duplicate_file(document_name)){
+      conf = confirm("This file name "+document_name+" already exists Replace the file in the destination ?");
+  }else{
+     conf = true;
+  }
+
+  if(conf){  
+    $.post('Service/service_save_file.php', 
+        {
+          content: content,
+          UID : UID,
+          file_name:document_name
+        }, 
     function() {
     /*optional stuff to do after success */
     }).done(function(data){
@@ -960,6 +969,7 @@ function save_file(UID,document_name){
             $.simplyToast(json_res.message, 'danger');
         }
     });
+  }
 }
 // ______________________________
 
@@ -987,6 +997,7 @@ function save_file(UID,document_name){
                 let name_file = '<li class="item-doc context-menu-one"><a  href="#" ><i class="fa fa-file-text-o" aria-hidden="true"></i>'+el+'</a></li>';
                 $("#show_doc").append(name_file);
               });
+              array_file_list = jsondata.data;
 
             }else{
               alert(data);
@@ -1181,36 +1192,51 @@ function singout(){
 function upload_file(UID){
   $("#accessToken").val(UID);
   var formData = new FormData($("form#file_doc")[0]);
-     load_overlay();
-    $.ajax({
-        url: 'Service/move_file_import.php',
-        type: 'POST',
-        data: formData,
-        async: false,
-        success: function (data) {
-          try{
-              let json_res = jQuery.parseJSON(data);
-              if(json_res.status == true){
-                   
-                  $.simplyToast(json_res.message, 'success');
-                  $("#uploader").modal('toggle');
-                   show_doc_list(UID);
-                   load_content(UID,json_res.fileName);
-                   load_overlay();
-              }else{
-                     load_overlay();
-                   $.simplyToast(json_res.message, 'danger');
-              }
-          }catch(e){
-               load_overlay();
-              $.simplyToast(e, 'danger');
-          }
-      },
-      cache: false,
-      contentType: false,
-      processData: false
-  });
-  
+  let fileName = $("form#file_doc input").val().split('\\').pop();
+  let conf = false;
+    if(Duplicate_file(fileName)){
+        conf = confirm("file "+fileName+" already exists Replace the file in the Server?");
+    }else{
+        conf = true;
+    }
+
+    
+    if(conf){
+            load_overlay();
+               //ajax
+              $.ajax({
+                  url: 'Service/move_file_import.php',
+                  type: 'POST',
+                  data: formData,
+                  async: false,
+                  success: function (data) {
+                    try{
+                        let json_res = jQuery.parseJSON(data);
+                        if(json_res.status == true){
+                             
+                            $.simplyToast(json_res.message, 'success');
+                            $("#uploader").modal('toggle');
+                             show_doc_list(UID);
+                             load_content(UID,json_res.fileName);
+                             load_overlay();
+                        }else{
+                               load_overlay();
+                             $.simplyToast(json_res.message, 'danger');
+                        }
+                    }catch(e){
+                         load_overlay();
+                        $.simplyToast(e, 'danger');
+                    }
+                },
+                cache: false,
+                contentType: false,
+                processData: false
+            });
+            // ajax
+    }
+
+
+
 }
 //___________________________________________________
 
@@ -1280,6 +1306,21 @@ $.post('Service/load_content.php',
            return;
         }
       });
+}
+//________________________________________
+
+//17 function Duplicate file
+function Duplicate_file (file_name){
+    
+  let $res = $.inArray(file_name,array_file_list);
+  
+  if($res>=0){
+    return true;
+  }else{
+    return false;
+  }
+
+  return false;
 }
 </script>
 
@@ -1457,7 +1498,15 @@ $(document).ready(function() {
           });
 
       ////////////////////////////////////////
-    		
+    		  $(".logo").click(function(event) {
+            if(Duplicate_file ("DEMO.md")){
+              alert("true");
+            }else{
+              alert('false');
+            }
+          });
+
+
 
         //init function
         setup(document_name);
