@@ -51,6 +51,12 @@
     <link rel="stylesheet" href="lib/css/agate.min.css">
    
     <style type="text/css">
+
+    #input-doc{
+      -webkit-box-shadow: 3px 3px 56px 0px rgba(61,160,235,1);
+      -moz-box-shadow: 3px 3px 56px 0px rgba(61,160,235,1);
+      box-shadow: 3px 3px 56px 0px rgba(61,160,235,1);
+    }
     #section1 {padding-top:35px;height:auto; }
     #section2 {padding-top:35px;height:auto; }
     #section3 {padding-top:35px;height:auto; }
@@ -317,7 +323,7 @@
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                     <li id="docName"><a class="mylist"  style="color: #ffffff;padding-top: 7px;cursor: pointer;">Untitled Document.md</a></li>
-                    <li id="changeDocName" style="display: none;"><a class="mylist" style="color: #ffffff;padding-top: 4px;cursor: pointer;"><input type="text" style="color: #000000"></input></a></li>
+                    <li id="changeDocName" style="display: none;"><a class="mylist" style="color: #ffffff;padding-top: 4px;cursor: pointer;"><input type="text" id="input-doc"  style="color: #000000;"></input></a></li>
                     <?php if($status_login) {?>
                      <li style="cursor: pointer;"><a class="logout" id="singout" >SIGN OUT</a></li>
                      <?php }else{?>
@@ -901,21 +907,21 @@ ___
     <!-- js placed at the end of the document so the pages load faster -->
     <!-- jquery-1.8.3.min.js -->
 
-  	<script type="text/javascript" src="lib/js/jquery-3.2.0.min.js"></script>
-    <script src="lib/js/highlight.min.js"></script>
-    <script src="lib/js/jquery.contextMenu.js" type="text/javascript"></script>
-    <script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
-    <script src="lib/js/simply-toast.min.js"></script>
-	  <script type="text/javascript" src="lib/js/tab.js"></script>
-    <script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
-    <script class="include" type="text/javascript" src="lib/js/jquery.dcjqaccordion.2.7.js"></script>
-    <script src="lib/js/jquery.scrollTo.min.js"></script>
-    <script src="lib/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="lib/js/md_complie.js" type="text/javascript" ></script>
-    <script src="lib/js/common-scripts.js"></script>
-    <script src="lib/js/add_in.js"></script>
-    <script type="text/javascript" src="lib/js/FileSaver.js"></script>
-    <script type="text/javascript" src="lib/js/jquery.fileDownload.js"></script>
+<script type="text/javascript" src="lib/js/jquery-3.2.0.min.js"></script>
+<script src="lib/js/highlight.min.js"></script>
+<script src="lib/js/jquery.contextMenu.js" type="text/javascript"></script>
+<script type="text/javascript" src="lib/js/jquery.numberedtextarea.js"></script>
+<script src="lib/js/simply-toast.min.js"></script>
+<script type="text/javascript" src="lib/js/tab.js"></script>
+<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="lib/js/jquery.dcjqaccordion.2.7.js"></script>
+<script src="lib/js/jquery.scrollTo.min.js"></script>
+<script src="lib/js/jquery.nicescroll.js" type="text/javascript"></script>
+<script src="lib/js/md_complie.js" type="text/javascript" ></script>
+<script src="lib/js/common-scripts.js"></script>
+<script src="lib/js/add_in.js"></script>
+<script type="text/javascript" src="lib/js/FileSaver.js"></script>
+<script type="text/javascript" src="lib/js/jquery.fileDownload.js"></script>
 <script type="text/javascript">
 // pack function
 
@@ -945,7 +951,7 @@ function save_file(UID,document_name){
   var content = $("#input_md").val();
   let conf = false;
   if(Duplicate_file(document_name)){
-      conf = confirm("This file name "+document_name+" already exists Replace the file in the destination ?");
+      conf = confirm("File "+document_name+" already exists Replace the file in the destination ?");
   }else{
      conf = true;
   }
@@ -989,7 +995,6 @@ function save_file(UID,document_name){
           function() {
           /*optional stuff to do after success */
           }).done(function(data){
-            
             var jsondata = jQuery.parseJSON(data);
             if(jsondata.status == true){
               $("#show_doc").empty();
@@ -998,11 +1003,9 @@ function save_file(UID,document_name){
                 $("#show_doc").append(name_file);
               });
               array_file_list = jsondata.data;
-
             }else{
               alert(data);
             }
-            
           },function(){
               //event load content from server
                $(".item-doc").click(function(event) {
@@ -1046,11 +1049,8 @@ function addTypeFile(fileName){
       if(json_res.status){
         $.simplyToast(json_res.message, 'success');
         show_doc_list(UID);
-       
       }else{
-
         $.simplyToast(json_res.message, 'danger');
-        
       }
     });
  }
@@ -1126,9 +1126,13 @@ function clickRight(){
                var conf = confirm("Are you sure to delete the file "+file_name+"?");
 
               if(conf){    
+
                 delete_file(UID,file_name);
+
               }else{
+
                 return;
+
               }
             }else if(key == "rename" ){
               console.log($(this));
@@ -1199,7 +1203,6 @@ function upload_file(UID){
     }else{
         conf = true;
     }
-
     
     if(conf){
             load_overlay();
@@ -1220,7 +1223,7 @@ function upload_file(UID){
                              load_content(UID,json_res.fileName);
                              load_overlay();
                         }else{
-                               load_overlay();
+                             load_overlay();
                              $.simplyToast(json_res.message, 'danger');
                         }
                     }catch(e){
@@ -1257,11 +1260,10 @@ function ajax_renderPDF_php(UID){
     try{
       let json = jQuery.parseJSON(data);
       if(json.status == true){
-
           window.open(json.url_download);
           load_overlay();
       }else{
-          load_overlay();
+         load_overlay();
          $.simplyToast(json.message, 'danger');
       }
     }catch(e){
@@ -1326,51 +1328,54 @@ function Duplicate_file (file_name){
 
     
 <script type="text/javascript">
-$(document).ready(function() {
-         
-         
-        
-   
-         // event show source code html
-         $("#btn-show-html").click(function(event) {
-           $("#textarea-modal-html").val(tag_html_now);
-           $("#show-html-modal").modal("toggle");
-         });
-         // event show source code html
-        
-       
-         //binding event key up textarea 
-         $(".input").bind('input', function(event) {           
-          update_html();
-         });
-         //binding event key up textarea 
 
-         // Event upload file
-         $("#btn_upload").click(function(event) {
+    // event show source code html
+    $(function(){
+       $("#btn-show-html").click(function(event) {
+         $("#textarea-modal-html").val(tag_html_now);
+         $("#show-html-modal").modal("toggle");
+       });  
+    });
+     // event show source code html
+    
+    //binding event key up textarea 
+    $(function(){
+      $(".input").bind('input', function(event) {           
+        update_html();
+      });
+    });  
+    //binding event key up textarea 
+      
+    // Event upload file    
+     $(function(){
+        $("#btn_upload").click(function(event) {
             upload_file(UID);
-         });
-         // Event upload file
-    		
-        // event btn tutorail
-        $("#btn_tutorial,#tutorial-close").click(function(event) {
+        });
+     });    
+    // Event upload file   
+
+    // event btn tutorail  
+    $(function(){
+      $("#btn_tutorial,#tutorial-close").click(function(event) {
           let speed = '800';
           // form editor hide or show
-          $("#editor-io,#tutorial").toggle(speed);
+          $("#editor-io,#tutorial").toggle(speed); 
+      });
+    }); 
+    // event btn tutorail   
         
-        });
-        // event btn tutorail
-
-        //event btn singin start
-    		$("#singin").click(function(event) {
-    			$("#modal-login").empty();
-    			$.get('ajax/login.html', function() {  				
-    			}).done(function(data){
-    				$("#modal-login").append(data);  				
-    			},function(){
-    				$("#myModal").modal('show');
-    				$("#btn-singIn").click(function(event) {
-    					$.post('Service/login.php', {user: $("#User").val(),password:$("#password").val()}, function() {    					
-    					}).done(function(data){
+    //event btn singin start
+    $(function(){
+        $("#singin").click(function(event) {
+          $("#modal-login").empty();
+          $.get('ajax/login.html', function() {         
+          }).done(function(data){
+            $("#modal-login").append(data);         
+          },function(){
+            $("#myModal").modal('show');
+            $("#btn-singIn").click(function(event) {
+              $.post('Service/login.php', {user: $("#User").val(),password:$("#password").val()}, function() {              
+              }).done(function(data){
                 let json_res = jQuery.parseJSON(data);
                 if(json_res.status){
                      $.simplyToast("Wellcome ", 'success');
@@ -1378,43 +1383,54 @@ $(document).ready(function() {
                 }else{
                       $.simplyToast(json_res.message, 'danger');
                 }
-    					});
-    				});
-    			});
-    		});
-        //event btn singin stop
-
-        //event change Doc Name focus
-        $("#docName").click(function(event) {
+              });
+            });
+          });
+        });
+    });
+    //event btn singin stop    
+        
+    //event change Doc Name focus   
+    $(function(){
+         $("#docName").click(function(event) {
           $(this).hide();
           $("#changeDocName").show();
           $("#changeDocName").children().children().val(document_name);
         });
-        //event change Doc Name focus
-
-       //event change Doc Name onblur save new doc Name
-       $("#changeDocName").children().children().blur(function(event) {
+    });
+    //event change Doc Name focus  
+    		
+        
+    //event change Doc Name onblur save new doc Name
+    $(function(){
+      $("#changeDocName").children().children().blur(function(event) {
          document_name = $(this).val();
          $("#changeDocName").hide();
           $("#docName").show();
          $("#docName").children().html(document_name);
        });
-       //event change Doc Name onblur
-
-       //event save file to server
-       $("#my_save").click(function(event) {
+    });    
+     //event change Doc Name onblur   
+        
+    //event save file to server
+    $(function(){
+      $("#my_save").click(function(event) {
           save_file(UID,document_name);
        });
-       //event save file to server
-
-       //event cilck import
-       $("#import_file").click(function(event) {
+    });  
+    //event save file to server  
+      
+    //event cilck import
+    $(function(){
+        $("#import_file").click(function(event) {
          $("#uploader").modal('show');
        });
-       //event cilck import
-
-       // event ckick export file
-       $(".export-file").click(function(event) {
+    });   
+    //event cilck import  
+       
+    // event ckick export file
+    $(function(){
+      $(".export-file").click(function(event) {
            let type_file = $(this).attr("type-file");
            // tag_html_now
             let Doc_name_save = document_name.split(".");
@@ -1432,12 +1448,14 @@ $(document).ready(function() {
            }else{
              alert(type_file);
            }
-           file = null;
-        
+           file = null;      
        });
-       // event ckick export file
-           
-      //shot key command
+    });   
+     // event ckick export file   
+       
+
+     //shot key command   
+    $(function(){
       $(window).bind('keydown', function(event) {
           if (event.ctrlKey || event.metaKey) {
               switch (String.fromCharCode(event.which).toLowerCase()) {
@@ -1456,23 +1474,29 @@ $(document).ready(function() {
               }
           }
       });
-      //shot key command
-
-      // event sing out 
-      $("#singout").click(function(event) {
-        let conf = confirm("Are you sure");
-        if(conf){
-            singout();
-        }else{
-            return false;
-        }
-      });
-      // event sing out 
-
-      ///////////////////////////////////////
+    });   
+    //shot key command  
+           
+     
+    // event sing out  
+    $(function(){
+       $("#singout").click(function(event) {
+          let conf = confirm("Are you sure");
+          if(conf){
+              singout();
+          }else{
+              return false;
+          }
+        });
+    });  
+    // event sing out 
+      
+     
+      
+    $(function(){
+       ///////////////////////////////////////
          // Add scrollspy to <body>
           $('.content-tutorial').scrollspy({target: "", offset: 100});   
-
           // Add smooth scrolling on all links inside the navbar
           $(".content-id").on('click', function(event) {
             // Make sure this.hash has a value before overriding default behavior
@@ -1493,30 +1517,25 @@ $(document).ready(function() {
                 window.location.hash = hash;
               });
             }  // End if
-
             //alert(555);
           });
 
-      ////////////////////////////////////////
-    		  $(".logo").click(function(event) {
-            if(Duplicate_file ("DEMO.md")){
-              alert("true");
-            }else{
-              alert('false');
-            }
-          });
+    });
+     
 
+  //init function
+  $(function(){
+     setup(document_name);
+    if(UID!=""){
+      // islogin
+      show_doc_list(UID);
+      clickRight();
+    }
+  });
+  //init function
+       
+        
 
-
-        //init function
-        setup(document_name);
-        if(UID!=""){
-          // islogin
-          show_doc_list(UID);
-          clickRight();
-        }
-        //init function
-});
 
     
     </script>

@@ -9,8 +9,3 @@ You can create issues to get help.
 Documentation
 -------
 available https://wpfilebase.com/documentation/
-
-ikool009
-===
-
-
