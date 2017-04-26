@@ -1438,10 +1438,13 @@ function Duplicate_file (file_name){
               let text_md = $("#input_md").val();
               var file = new Blob([text_md], {type: "text/plain;charset=utf-8"}); //IE<10
               saveAs(file, Doc_name_save[0]+".md");
+              text_md = null;
+              file = null;
 
            }else if(type_file == "html"){
               var file = new Blob([tag_html_now], {type: "text/plain;charset=utf-8"}); //IE<10
               saveAs(file, Doc_name_save[0]+".html"); 
+              file = null;
               
            }else if(type_file == "pdf"){
                 ajax_renderPDF_php(UID);
@@ -1535,9 +1538,6 @@ function Duplicate_file (file_name){
   //init function
        
         
-
-
-    
     </script>
   </body>
 </html>
