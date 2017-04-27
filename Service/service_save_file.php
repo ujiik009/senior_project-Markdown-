@@ -1,6 +1,7 @@
 <?php 
 	error_reporting(1);
 	require '../config_system/config_path.php';
+	require $path['public_func'];
 	$return = array();
 	if(isset($_POST['content']) && isset($_POST['UID']) && isset($_POST['file_name'])){
 			$file_name = $path['temp_user'].$_POST['UID']."/file_temp/".$_POST['file_name'];
@@ -14,10 +15,12 @@
 				if(file_put_contents($file_name, $_POST['content']) !== false){
 					$return["status"] = true;
 					$return["message"] = "Save file successfully";
+					write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","save file {$_POST['file_name']}",true);
 				
 				}else{
 					$return["status"] = false;
-					$return["message"] = "File save failed.ice".$temp_user;
+					$return["message"] = "save file failed".$temp_user;
+					write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","save file {$_POST['file_name']}",false);
 				}
 			}else{
 				$return["status"] = false;

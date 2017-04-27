@@ -1,6 +1,7 @@
 <?php 
 include '../lib/php/mpdf/mpdf.php';
 require '../config_system/config_path.php';
+require $path['public_func'];
 
 
 
@@ -33,10 +34,12 @@ require '../config_system/config_path.php';
 				$return["status"] =true;
 				$return['message'] = "render pass";
 				$return['url_download'] = $url_pdf."{$file_name}_{$number_ran}.pdf";
+				write_log_file("{$temp_user}log.log","Render file PDF {$file_name}_{$number_ran}.pdf",true);
 
 			}else{
 				$return["status"] = false;
-				$return['message'] = "render now pass";
+				$return['message'] = "render not pass";
+				write_log_file("{$temp_user}log.log","Render file PDF {$file_name}_{$number_ran}.pdf",false);
 			}
 
 

@@ -19,6 +19,7 @@
 				//setcookie("UID", encrypt_decrypt('encrypt',$data['user_id']), time() + 10, "/"); // 86400 = 1 day
 				$return['status'] = true;
 				$return['message'] = "OK";
+				write_log_file($path['temp_user'].$data['user_id']."/log.log","User Login",true);
 			}else{
 				$return['status'] = false;
 				$return['message'] = "not found User try again";

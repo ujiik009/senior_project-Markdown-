@@ -1,6 +1,7 @@
 <?php 
 
 	require '../config_system/config_path.php';
+	require $path['public_func'];
 	// $_POST['UID'] ="18032017005543";
 	// $_POST['old_file'] = "new_file.md";
 	// $_POST['new_file'] = "new_file1.md";
@@ -12,8 +13,10 @@
 			// var_dump(glob("*"));
 			if(file_exists($path_temp_user.$_POST['old_file'])){
 				if(rename ($_POST['old_file'], $_POST['new_file'])){
+					write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","RENAME file from {$_POST['old_file']} to {$_POST['new_file']}",true);
 					$return['status'] = true;
 				}else{
+					write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","RENAME file from {$_POST['old_file']} to {$_POST['new_file']}",false);
 					$return['status'] = false;
 					$return['message'] = "ReNname file error";
 				}

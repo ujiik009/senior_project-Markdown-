@@ -23,10 +23,13 @@
 					if(mkdir($path['temp_user'].$user_id,0777)){
 						mkdir($path['temp_user'].$user_id."/file_temp",0777);
 						file_put_contents($path['temp_user'].$user_id."/config.json", "");
+						file_put_contents($path['temp_user'].$user_id."/log.log", "");
+						write_log_file($path['temp_user'].$user_id."/log.log","create user",true);
 						//echo $path['temp_user'].$user_id;
 						$return['status'] = true;
 						$return['message'] = "Create User successful";
 					}else{
+						write_log_file($path['temp_user'].$user_id."/log.log","can not create file",false);
 						$return['status'] = false;
 						$return['message'] = "can not create file";
 					}

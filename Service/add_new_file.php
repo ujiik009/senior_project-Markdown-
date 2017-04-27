@@ -1,6 +1,7 @@
 <?php
 	//header('Content-Type: application/json');
 	require '../config_system/config_path.php';
+	require $path['public_func'];
 	//var_dump($path);
 	//echo $path['temp_user'];
 	// $_POST['UID'] = "18032017005543";
@@ -27,10 +28,13 @@
 				file_put_contents("{$_POST['NewDoc']} ({$count_file_match}).md", "");
 				//chmod("{$_POST['NewDoc']} ({$count_file_match}).md", 777);
 				$return["status"] = true;
+				write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","New file {$_POST['NewDoc']} ({$count_file_match}).md",true);
+
 			}else{
 				$_POST['NewDoc'] = explode(".",$_POST['NewDoc'])[0];
 				file_put_contents("{$_POST['NewDoc']}.md", "");
 				//chmod("{$_POST['NewDoc']}.md", 777);
+				write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","New file {$_POST['NewDoc']}.md",true);
 				$return["status"] = true;
 			}
 
