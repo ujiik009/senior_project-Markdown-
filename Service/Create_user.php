@@ -42,10 +42,12 @@
 		}else{
 			$return['status'] = false;
 			$return['message'] = "Qurey Error";
+			write_log_file($path['path_log_sys'],"file ".__FILE__." {$return['message']} => {$sql_check_user}",false);
 		}
 	}else{
 		$return['status'] = false;
 		$return['message'] = "not require data";
+		write_log_file($path['path_log_sys'],"Access ".__FILE__." not found data Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 	}
 
 

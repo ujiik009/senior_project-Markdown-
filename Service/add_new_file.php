@@ -10,10 +10,10 @@
 	$return = array();
 	if(count($_POST)>0 && isset($_POST['UID']) && isset($_POST['NewDoc'])){
 		
-		if(file_exists("{$path['temp_user']}/{$_POST['UID']}/file_temp/")){
+		if(file_exists("{$path['temp_user']}{$_POST['UID']}/file_temp/")){
 
 
-			chdir("{$path['temp_user']}/{$_POST['UID']}/file_temp/");
+			chdir("{$path['temp_user']}/{$_POST['UID']}/file_temp");
 			if(file_exists("{$_POST['NewDoc']}")){
 				$_POST['NewDoc'] = explode(".",$_POST['NewDoc'])[0];
 				//echo "true";
@@ -40,11 +40,13 @@
 
 		}else{
 			$return["status"] = false;
-			$return['message'] = "not found path"."{$_POST['UID']}";
+			$return['message'] = "not found path";
+			write_log_file($path['path_log_sys'],"not found path "."{$path['temp_user']}{$_POST['UID']}/file_temp/",false);
 		}
 	}else{
 		$return["status"] = false;
 		$return['message'] = "not found data";
+		write_log_file($path['path_log_sys'],"Access ".__FILE__." not found data Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 	}
 	echo json_encode($return);
 	

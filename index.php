@@ -447,7 +447,7 @@
           <section class="wrapper" id="tutorial" style="display: none;">
             <div class="row" > <!-- row -->
               <div id="tutorial-content" ><!-- tutorial-content -->
-                <div class="navbar-box">
+                <div class="navbar-box" style="padding: -30px">
                   <div class="item-right" id="tutorial-close"><a class="btn btn-danger" >X</a>
                   </div>
                   CHEAT SHEET

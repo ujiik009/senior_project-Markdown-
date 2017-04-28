@@ -23,24 +23,26 @@
 				if(unlink($path_file)){
 				$return['status'] = true;
 				$return['message'] = "Delete file {$_POST['file_name']} successfully";
-				// write_log_file($path['temp_user'].$_POST['UID']."/log.log",$return['message'],$return['status'])
+				write_log_file($path['temp_user'].$_POST['UID']."/log.log",$return['message'],$return['status']);
 				
 				}else{
 					$return['status'] = false;
 					$return['message'] = "Deleted file failed.";
-					// write_log_file($path['temp_user'].$_POST['UID']."/log.log",$return['message'],$return['status']);
+					write_log_file($path['temp_user'].$_POST['UID']."/log.log",$return['message'],$return['status']);
 				}
 
 			}
 		}else{
 			$return['status'] = false;
-			$return['message'] = "Can not delete file because File not found.";
+			$return['message'] = "Can not delete file because File {$path_file} not found.";
+			write_log_file($path['path_log_sys'],"file ".__FILE__." {$return['message']}",false);
 			
 		}
 		//var_dump( );
 	}else{
 		$return['status'] = false;
 		$return['message'] = "data not found";
+		write_log_file($path['path_log_sys'],"Access ".__FILE__." not found data Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 	}
 	echo json_encode($return);
 

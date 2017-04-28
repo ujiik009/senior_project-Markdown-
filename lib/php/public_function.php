@@ -45,10 +45,8 @@ function check_cookie($obj_con,$cookie_name){
 
 function write_log_file($path_user,$message,$log_status){
 
-    $date = date("d-m-Y H:i:s");
-
+    $date = date("d-m-Y H:i:s A");
     $message = $date ." : ".$message ." ".(($log_status == true) ? "[pass]" : "[error]")."\n";
-    //var_dump($message);
     if(file_put_contents($path_user,$message, FILE_APPEND | LOCK_EX)){
         return true;
     }else{

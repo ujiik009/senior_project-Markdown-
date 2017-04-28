@@ -20,19 +20,23 @@
 				$return['status'] = true;
 				$return['message'] = "OK";
 				write_log_file($path['temp_user'].$data['user_id']."/log.log","User Login",true);
+				write_log_file($path['path_log_sys'],"User UID {$data['user_id']} Login Remote IP : {$_SERVER['REMOTE_ADDR']} ",true);
 			}else{
 				$return['status'] = false;
 				$return['message'] = "not found User try again";
+				write_log_file($path['path_log_sys'],"someone is trying to Signin using user => {$_POST['user']} and pass => {$_POST['password']} Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 			}
 		}else{
 			$return['status'] = false;
 			$return['message'] = "query sql Error";
+			write_log_file($path['path_log_sys'],"file ".__FILE__." {$return['message']} => {$sql_login}",false);
 		}
 
 		
 	}else{
 		$return['status'] = false;
 		$return['message'] = "data not found";
+		write_log_file($path['path_log_sys'],"Access ".__FILE__." not found data Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 	}
 
 	echo json_encode($return);

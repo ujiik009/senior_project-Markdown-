@@ -12,6 +12,7 @@
 	}else{
 		$return['status'] = false;
 		$return['message'] = "load file false";
+		write_log_file($path['path_log_sys'],"Access ".__FILE__." not found data Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 	}
 	echo json_encode($return);
 ?>
