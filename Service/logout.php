@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	error_reporting(0);
 	require '../config_system/config_path.php';
 	require $path['public_func'];
 	$uid = $_SESSION['data_user']['user_id'];

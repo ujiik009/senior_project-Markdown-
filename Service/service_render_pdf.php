@@ -30,29 +30,28 @@ require $path['public_func'];
 			$mpdf->SetDisplayMode('fullpage');
 			$mpdf->Output("{$temp_user}{$file_name}_{$number_ran}.pdf",'F');
 			
+
 			if(file_exists($temp_user."{$file_name}_{$number_ran}.pdf")){
 				$return["status"] =true;
 				$return['message'] = "render pass";
 				$return['url_download'] = $url_pdf."{$file_name}_{$number_ran}.pdf";
 				write_log_file("{$temp_user}log.log","Render file PDF {$file_name}_{$number_ran}.pdf",true);
+				$mpdf = null;
 
 			}else{
 				$return["status"] = false;
 				$return['message'] = "render not pass";
 				write_log_file("{$temp_user}log.log","Render file PDF {$file_name}_{$number_ran}.pdf",false);
+				$mpdf = null;
 			}
-
-
-			
 		}else{
 			$return["status"] = false;
 			$return['message'] = "chmod error";
-		}
-		
-		
+		}	
 	}else{
-		$return['status'] = false;
-		$return['message'] = "Not found path";
+		$return["status"] = false;
+		$return["message"] = "user not found.";
+		write_log_file($path['path_log_sys'],"UID {$_POST['UID']} not found temporary ",false);
 	}
 
  }else{

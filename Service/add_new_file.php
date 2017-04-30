@@ -41,7 +41,7 @@
 		}else{
 			$return["status"] = false;
 			$return['message'] = "not found path";
-			write_log_file($path['path_log_sys'],"not found path "."{$path['temp_user']}{$_POST['UID']}/file_temp/",false);
+			write_log_file($path['path_log_sys'],"UID {$_POST['UID']} not found temporary ",false);
 		}
 	}else{
 		$return["status"] = false;

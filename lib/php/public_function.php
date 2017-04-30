@@ -47,11 +47,16 @@ function write_log_file($path_user,$message,$log_status){
 
     $date = date("d-m-Y H:i:s A");
     $message = $date ." : ".$message ." ".(($log_status == true) ? "[pass]" : "[error]")."\n";
-    if(file_put_contents($path_user,$message, FILE_APPEND | LOCK_EX)){
+
+    try {
+        file_put_contents($path_user,$message, FILE_APPEND | LOCK_EX);
         return true;
-    }else{
+    }catch (Exception $e) {
+        file_put_contents("../log/log.log","Can not write files {$path_user} [error]",FILE_APPEND | LOCK_EX);
         return false;
+
     }
+   
 }
 
 

@@ -19,14 +19,20 @@
 				
 				}else{
 					$return["status"] = false;
-					$return["message"] = "save file failed".$temp_user;
-					write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","save file {$_POST['file_name']}",false);
+					$return["message"] = "save file failed";
+					write_log_file("{$path['temp_user']}/{$_POST['UID']}/log.log","save file failed {$temp_user}",false);
+					write_log_file($path['path_log_sys'],"UID {$_POST['UID']} save file failed  {$file_name}",false);
 				}
 			}else{
 				$return["status"] = false;
 				$return["message"] = "user not found.";
+				write_log_file($path['path_log_sys'],"UID {$_POST['UID']} not found temporary ",false);
 			}
 			
+	}else{
+		$return["status"] = false;
+		$return['message'] = "data not found";
+		write_log_file($path['path_log_sys'],"Access ".__FILE__." not found data Remote IP : {$_SERVER['REMOTE_ADDR']}",false);
 	}
 	
 	echo json_encode($return);

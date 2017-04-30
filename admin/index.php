@@ -132,12 +132,7 @@ body {
 				<div class="navbar-btn">
 					<button type="button" class="btn-toggle-fullwidth"><i class="lnr lnr-arrow-left-circle"></i></button>
 				</div>
-				<form class="navbar-form navbar-left">
-					
-				</form>
-				<div class="navbar-btn navbar-btn-right">
-					<a class="btn btn-success update-pro" href="https://www.themeineed.com/downloads/klorofil-pro-bootstrap-admin-dashboard-template/?utm_source=klorofil&utm_medium=template&utm_campaign=KlorofilPro" title="Upgrade to Pro" target="_blank"><i class="fa fa-rocket"></i> <span>UPGRADE TO PRO</span></a>
-				</div>
+				
 				<div id="navbar-menu">
 					<ul class="nav navbar-nav navbar-right">
 						
@@ -155,7 +150,7 @@ body {
 						<li><a href="index.php" class="active"><i class="lnr lnr-home"></i> <span>Dashboard</span></a></li>
 						<li id="log-sys"><a href="#" class=""><i class="lnr lnr-code"></i> <span>LOG SYSTEM</span></a></li>
 						<li id="tb-user"><a href="#" class=""><i class="lnr lnr-file-empty"></i> <span>USER</span></a></li>					
-						<li><a href="tables.html" class=""><i class="lnr lnr-dice"></i> <span>Tables</span></a></li>
+						
 						
 					</ul>
 				</nav>
@@ -165,7 +160,7 @@ body {
 		<!-- MAIN -->
 		<div class="main">
 			<!-- MAIN CONTENT -->
-			<div class="main-content" style="height: 100vh">
+			<div class="main-content" style="min-height: 100vh;max-height: auto;">
 				<div class="container-fluid">
 					<!-- OVERVIEW -->
 					<div class="panel panel-headline" style="height: auto">
@@ -224,8 +219,12 @@ body {
 					/*optional stuff to do after success */
 				}).done(function(data){
 					$(".panel-body").html(data);
+					$(".panel-body").append(component.cmd);
 				},function(){
-					 $('#example').DataTable();
+					 $('#example').DataTable({
+					 	"pageLength": 5
+					 });
+
 				});
 			});
 		});
