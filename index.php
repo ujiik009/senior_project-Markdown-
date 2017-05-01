@@ -1463,8 +1463,15 @@ function Duplicate_file (file_name){
           if (event.ctrlKey || event.metaKey) {
               switch (String.fromCharCode(event.which).toLowerCase()) {
               case 's':
-                  event.preventDefault();
-                  save_file(UID,document_name);
+
+                  if(UID == "" || UID == null){
+                    // alert(UID);
+                  }else{
+                    event.preventDefault();
+                    save_file(UID,document_name);
+                    // alert("else");
+                  }
+
                   break;
               case 'f':
                   event.preventDefault();
@@ -1526,17 +1533,17 @@ function Duplicate_file (file_name){
     });
      
 
-  //init function
-  $(function(){
-     setup(document_name);
-    if(UID!=""){
-      // islogin
-      show_doc_list(UID);
-      clickRight();
-    }
-  });
-  //init function
-       
+    //init function
+    $(function(){
+       setup(document_name);
+      if(UID!=""){
+        // islogin
+        show_doc_list(UID);
+        clickRight();
+      }
+    });
+    //init function
+         
         
     </script>
   </body>
