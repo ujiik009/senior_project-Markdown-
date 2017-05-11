@@ -25,7 +25,7 @@ require $path['public_func'];
 				unlink($name_pdf);
 			}
 			
-			$mpdf=new mPDF();
+			$mpdf=new mPDF('tha','A4','0','THSaraban');
 			$mpdf->WriteHTML($html);
 			$mpdf->SetDisplayMode('fullpage');
 			$mpdf->Output("{$temp_user}{$file_name}_{$number_ran}.pdf",'F');
