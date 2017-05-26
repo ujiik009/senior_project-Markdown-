@@ -1340,9 +1340,21 @@ function Duplicate_file (file_name){
     
     //binding event key up textarea 
     $(function(){
-      $(".input").bind('input', function(event) {           
-        update_html();
+      // $(".input").bind('input', function(event) {           
+      //   update_html();
+      // });
+      var delayID=null;
+      $(".input").on("keyup",function(event){
+          if(delayID){ clearTimeout(delayID);} 
+          delayID=setTimeout(function(){
+              var input_data=$("#sample_input").val();
+              // console.log(input_data); // ทำคำสั่งที่ต้องการ
+              update_html();
+              delayID=null;
+          },500);                        
       });
+
+
     });  
     //binding event key up textarea 
       
