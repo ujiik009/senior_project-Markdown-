@@ -18,7 +18,7 @@
 				setcookie("UID", encrypt_decrypt('encrypt',$data['user_id']), time() + (86400 * 30), "/"); // 86400 = 1 day
 				//setcookie("UID", encrypt_decrypt('encrypt',$data['user_id']), time() + 10, "/"); // 86400 = 1 day
 				$return['status'] = true;
-				$return['message'] = "OK";
+				$return['message'] = $_SESSION['data_user']['user_email'];
 				write_log_file($path['temp_user'].$data['user_id']."/log.log","User Login",true);
 				write_log_file($path['path_log_sys'],"User UID {$data['user_id']} Login Remote IP : {$_SERVER['REMOTE_ADDR']} ",true);
 			}else{

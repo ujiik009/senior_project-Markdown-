@@ -222,7 +222,7 @@ body {
 					$(".panel-body").append(component.cmd);
 				},function(){
 					 $('#example').DataTable({
-					 	"pageLength": 5
+					 	
 					 });
 
 				});

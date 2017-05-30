@@ -1390,8 +1390,8 @@ function Duplicate_file (file_name){
               }).done(function(data){
                 let json_res = jQuery.parseJSON(data);
                 if(json_res.status){
-                     $.simplyToast("Wellcome ", 'success');
-                     setTimeout(function(){ location.reload(); }, 1000);
+                     $.simplyToast("Wellcome "+json_res.message, 'success');
+                     setTimeout(function(){ location.reload(); }, 1599);
                 }else{
                       $.simplyToast(json_res.message, 'danger');
                 }
@@ -1475,7 +1475,7 @@ function Duplicate_file (file_name){
           if (event.ctrlKey || event.metaKey) {
               switch (String.fromCharCode(event.which).toLowerCase()) {
               case 's':
-
+                  // event Ctrl+s 
                   if(UID == "" || UID == null){
                     // alert(UID);
                   }else{

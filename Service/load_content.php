@@ -6,7 +6,7 @@
 		$path_user =  $path["temp_user"].$_POST['UID']."/"."file_temp/";
 		$data = file_get_contents($path_user.$_POST['doc_name']);
 		$return['status'] = true;
-		$return['message'] = "Load file successfully";
+		$return['message'] = "Load {$_POST['doc_name']} successfully";
 		$return['data'] = $data;
 		write_log_file($path['temp_user'].$_POST['UID']."/log.log","Load file {$_POST['doc_name']}",true);
 	}else{
