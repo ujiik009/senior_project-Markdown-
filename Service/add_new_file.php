@@ -1,18 +1,11 @@
 <?php
-	//header('Content-Type: application/json');
 	require '../config_system/config_path.php';
 	require $path['public_func'];
-	//var_dump($path);
-	//echo $path['temp_user'];
-	// $_POST['UID'] = "18032017005543";
-	// $_POST['NewDoc']="NewDocument.md";
 	$count_file_match = 0;
 	$return = array();
 	if(count($_POST)>0 && isset($_POST['UID']) && isset($_POST['NewDoc'])){
-		
 		if(file_exists("{$path['temp_user']}{$_POST['UID']}/file_temp/")){
-
-
+			
 			chdir("{$path['temp_user']}/{$_POST['UID']}/file_temp");
 			if(file_exists("{$_POST['NewDoc']}")){
 				$_POST['NewDoc'] = explode(".",$_POST['NewDoc'])[0];
