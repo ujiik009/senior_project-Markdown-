@@ -126,7 +126,7 @@ body {
 		<!-- NAVBAR -->
 		<nav class="navbar navbar-default navbar-fixed-top">
 			<div class="brand">
-				<a href="index.html"> <h3 style="padding: 0px;margin: 0px;"> VIEW LOG </h3></a>
+				<a href="index.php"> <h3 style="padding: 0px;margin: 0px;"> VIEW LOG </h3></a>
 			</div>
 			<div class="container-fluid">
 				<div class="navbar-btn">
