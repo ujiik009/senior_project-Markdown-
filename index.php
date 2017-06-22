@@ -528,7 +528,9 @@ italics this is a *book* or _book_ .
 
 Strong bold this is a **pan** or __pan__.
 
-Combined This is a **pen and a _pencil_**.
+Underline I'm going to the _|movies|_.
+
+This is a **pen and a _pencil_**.
 
 Strikethrough I don't like ~~red~~ color.
                        </code></pre>
@@ -537,7 +539,8 @@ Strikethrough I don't like ~~red~~ color.
                        <h5> 
                           italics this is a <em>book</em> or <em>book</em> .
                           </br></br>Strong bold this is a <strong>pan</strong> or <strong>pan</strong>.
-                          </br></br>Combined This is a <strong>pen and a <em>pencil</em></strong>.
+                          <br><br>Underline I'm going to the <u>movies</u>.
+                          </br></br> This is a <strong>pen and a <em>pencil</em></strong>.
                           </br></br>Strikethrough I don't like <del>red</del> color.
                        </h5>
                       </div>
@@ -592,8 +595,6 @@ Strikethrough I don't like ~~red~~ color.
 
 #### This is my [github](https://github.com/ujiik009)
 
-### Combined
-
 #### This is my **[facebook](https://www.facebook.com/ikool009)**
 
 #### This is my *[github](https://github.com/ujiik009)*
@@ -612,10 +613,6 @@ Strikethrough I don't like ~~red~~ color.
                           <h4>
                             This is my <a href='https://github.com/ujiik009'>github</a>
                           </h4>
-                          </br>
-                          <h3>
-                            Combined
-                          </h3>
                           </br>
                           <h4>
                             This is my <strong><a href='https://www.facebook.com/ikool009'>facebook</a></strong>
@@ -637,7 +634,7 @@ Strikethrough I don't like ~~red~~ color.
 
 logo facebook ![facebook](https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png)
 
-### Optional function customize size
+### function customize size
 
 **syntax ![text](url image)(width)(height)**
 
@@ -652,7 +649,7 @@ logo facebook ![facebook](https://www.seeklogo.net/wp-content/uploads/2016/09/fa
                             </br></br><strong>syntax ![text](url image)</strong>
                             </br>logo facebook <img src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png" alt="facebook" />
                             </br><h3>
-                              Optional function customize size
+                               function customize size
                             </h3>
                             </br></br><strong>syntax  ![text](url image)(width)(height)</strong>
                             </br>logo facebook <img src="https://www.seeklogo.net/wp-content/uploads/2016/09/facebook-icon-preview-1-200x200.png" alt="facebook" style="width:100px;height:100px;"/>
@@ -763,7 +760,7 @@ ___
                       <div id="section8" class="container-fluid">
                         <h1>Text Color</h1>
                          <hr class="myhorizontal"><br><br>
-                        <h3>Optional function customize Text color.</h3>
+                        <h3> function customize Text color.</h3>
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
                        <pre class="mypre"><code class="nohighlight no">    
 {? Example1 ?}(red)
