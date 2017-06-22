@@ -760,7 +760,7 @@ ___
                       <div id="section8" class="container-fluid">
                         <h1>Text Color</h1>
                          <hr class="myhorizontal"><br><br>
-                        <h3> function customize Text color.</h3>
+                        <h3> function customize text color.</h3>
 <!-- pre////////////////////////////////////////////////////////////////////////////- -->    
                        <pre class="mypre"><code class="nohighlight no">    
 {? Example1 ?}(red)
